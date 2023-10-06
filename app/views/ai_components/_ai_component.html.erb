@@ -1,0 +1,17 @@
+<div id="<%= dom_id ai_component %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Html content:</strong>
+    
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Name:</strong>
+    <%= ai_component.name %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this ai component", ai_component, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this ai component', edit_ai_component_path(ai_component), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

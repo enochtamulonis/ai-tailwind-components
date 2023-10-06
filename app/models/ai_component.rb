@@ -1,0 +1,2 @@
+class AiComponent < ApplicationRecord
+end
