@@ -1,13 +1,18 @@
-<%== @ai_component.html_content %>
+<div class="grid h-full w-full p-8">
+  <%== @ai_component.html_content rescue "There was an error in code" %>
+  <div class="mt-16 bg-gray-700 p-3 max-w-5xl text-gray-100 rounded-lg">
+    <%= @ai_component.html_content %>
+  </div>
 
-<div class="mt-16 bg-gray-700 p-3 max-w-5xl text-gray-100 rounded-lg">
-  <%= @ai_component.html_content %>
+  <div class="mt-16 bg-gray-700 p-3 max-w-5xl text-gray-100 rounded-lg">
+    <%= @ai_component.css_content %>
+  </div>
+
+  <div class="mt-16 bg-gray-700 p-3 max-w-5xl text-gray-100 rounded-lg">
+    <%= @ai_component.ai_results %>
+  </div>
+
+  <style>
+    <%= @ai_component.css_content&.html_safe rescue nil %>
+  </style>
 </div>
-
-<div class="mt-16 bg-gray-700 p-3 max-w-5xl text-gray-100 rounded-lg">
-  <%= @ai_component.css_content %>
-</div>
-
-<style>
-  <%= @ai_component.css_content&.html_safe %>
-</style>

@@ -9,6 +9,6 @@
   </div>
 
   <div id="ai_components" class="min-w-full">
-    <%= render @ai_components %>
+    <%= render @ai_components.order(created_at: :desc) %>
   </div>
 </div>

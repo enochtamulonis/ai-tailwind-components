@@ -22,6 +22,7 @@ class AiComponentsController < ApplicationController
   # POST /ai_components or /ai_components.json
   def create
     @ai_component = AiComponent.new(ai_component_params)
+    @ai_component.get_tailwind_code_from_ai if ai_component_params[:ai_prompt].present?
 
     respond_to do |format|
       if @ai_component.save
@@ -65,6 +66,6 @@ class AiComponentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ai_component_params
-      params.require(:ai_component).permit(:html_content, :name, :css_content)
+      params.require(:ai_component).permit(:html_content, :name, :css_content, :ai_prompt)
     end
 end

@@ -73,3 +73,11 @@ group :test do
   gem "selenium-webdriver"
 
 end
+
+gem "view_components", "~> 0.1.0"
+
+gem "view_component", "~> 3.6"
+
+gem "ruby-openai", "~> 5.1"
+
+gem "pry-remote", "~> 0.1.8"

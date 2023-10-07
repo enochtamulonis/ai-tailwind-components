@@ -1,0 +1,17 @@
+<div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-[100vh] flex flex-col items-center pt-36">
+  <h1 class="font-bold text-7xl text-gray-100">Tailwind Genius</h1>
+  <p class="text-xl text-gray-100 mb-6">AI generated custom tailwindcss components </p>
+  
+  <div class="relative max-w-2xl w-full">
+    <%= form_with url: "/ai_components", model: AiComponent.new do |f| %>
+      <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3", placeholder: "Enter a prompt to generate tailwindcss code" %>
+      <div class="absolute right-0 top-0 h-full w-24 text-indigo-700 rounded-r-lg">
+        <%= button_to "Prompt", class: "w-full flex justify-center" do %>
+          <div class="w-12">
+            <%= render Icons::CheckComponent.new %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
