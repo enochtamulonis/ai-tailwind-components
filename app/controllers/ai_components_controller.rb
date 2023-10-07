@@ -65,6 +65,6 @@ class AiComponentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def ai_component_params
-      params.require(:ai_component).permit(:html_content, :name)
+      params.require(:ai_component).permit(:html_content, :name, :css_content)
     end
 end

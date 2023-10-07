@@ -1,5 +1,13 @@
 <%== @ai_component.html_content %>
 
-<div class="mt-16 bg-gray-700 p-3 max-w-5xl w-full mx-auto rounded-lg">
+<div class="mt-16 bg-gray-700 p-3 max-w-5xl text-gray-100 rounded-lg">
   <%= @ai_component.html_content %>
 </div>
+
+<div class="mt-16 bg-gray-700 p-3 max-w-5xl text-gray-100 rounded-lg">
+  <%= @ai_component.css_content %>
+</div>
+
+<style>
+  <%= @ai_component.css_content&.html_safe %>
+</style>
