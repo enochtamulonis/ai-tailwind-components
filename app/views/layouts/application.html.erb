@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AiComponents</title>
+    <title><%= yield(:title) || Seo::Title %></title>
+    <link rel="icon" type="image/png" href="<%= asset_path("brain.svg") %>">
+    <meta name="description" content="<%= yield(:meta_description) || Seo::Description %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
