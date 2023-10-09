@@ -14,6 +14,8 @@ module Events
           user.broadcast_replace_to(user, partial: "subscriptions/success/success", target: ActionView::RecordIdentifier.dom_id(user, :success))
         when 'invoice.payment_failed'
           # Inform the user of failed payment
+        when 'customer.subscription.deleted'
+          # Do something when deleted
         end
     end
   end

@@ -1,6 +1,7 @@
 class AiComponentsController < ApplicationController
   before_action :set_ai_component, only: %i[ show edit update destroy ]
   before_action :authenticate_user_free_trys, except: :show
+  before_action :ensure_subscription
   # GET /ai_components or /ai_components.json
   def index
     @ai_components = current_user.ai_components.all
