@@ -7,8 +7,9 @@ class AiPrompt
 
   def call
       client = OpenAI::Client.new
-      question = "Make me a tailwindcss component #{ai_prompt}"
-      
+      question = "Make me a tailwindcss component #{ai_prompt}. "
+      question += "use icons from heroicons if needed for component. "
+      question += "only return the html don't include any javascript code or cdns"
       response = client.chat(
           parameters: { 
               model: "gpt-3.5-turbo", # Required.

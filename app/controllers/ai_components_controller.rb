@@ -22,8 +22,12 @@ class AiComponentsController < ApplicationController
   # POST /ai_components or /ai_components.json
   def create
     @ai_component = AiComponent.new(ai_component_params)
-    @ai_component.get_tailwind_code_from_ai if ai_component_params[:ai_prompt].present?
-
+    
+    if ai_component_params[:ai_prompt].present?
+      service = TailwindComponentService.new(ai_component_params[:ai_prompt])
+      service.call
+      @ai_component.update(html_content: service.html, ai_results: service.ai_results)
+    end
     respond_to do |format|
       if @ai_component.save
         format.html { redirect_to ai_component_url(@ai_component), notice: "Ai component was successfully created." }

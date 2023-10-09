@@ -4,10 +4,10 @@
   
   <div class="relative max-w-2xl w-full">
     <%= form_with url: "/ai_components", model: AiComponent.new do |f| %>
-      <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3", placeholder: "Enter a prompt to generate tailwindcss code" %>
-      <div class="absolute right-0 top-0 h-full w-24 text-indigo-700 rounded-r-lg">
-        <%= button_to "Prompt", class: "w-full flex justify-center" do %>
-          <div class="w-12">
+      <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter a prompt to generate tailwindcss code" %>
+      <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
+        <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
+          <div class="w-8">
             <%= render Icons::CheckComponent.new %>
           </div>
         <% end %>
