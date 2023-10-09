@@ -8,8 +8,13 @@
     <meta name="stripe-public-key" content="<%= Rails.application.credentials.dig(:stripe, :publishable_key) %>">
     <meta property="og:title" content="<%= Seo::Title %>">
     <meta property="og:description" content="AI Generated Tailwindcss Components. Instantly create beautiful UI with Tailwind Genius">
-    <meta property="og:image" content="<%= asset_path("screenshot.png") %>">
+    <meta property="og:image" content="<%= asset_url("screenshot.png") %>">
     <meta property="og:url" content="https://www.tailwind-genius.com">
+    <meta name="twitter:title" content="<%= Seo::Title %>">
+    <meta name="twitter:description" content="AI Generated Tailwindcss Components. Instantly create beautiful UI with Tailwind Genius">
+    <meta name="twitter:image" content="<%= asset_url("screenshot.png") %>">
+    <meta name="twitter:card" content="<%= asset_url("screenshot.png") %>">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
