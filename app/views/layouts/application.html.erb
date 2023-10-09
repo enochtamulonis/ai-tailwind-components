@@ -14,6 +14,8 @@
     <meta name="twitter:description" content="AI Generated Tailwindcss Components. Instantly create beautiful UI with Tailwind Genius">
     <meta name="twitter:image" content="<%= asset_url("screenshot.png") %>">
     <meta name="twitter:card" content="<%= asset_url("screenshot.png") %>">
+    <meta name="twitter:site" content="@Enoch9453956618">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
@@ -22,7 +24,7 @@
     <%= javascript_importmap_tags %>
 
     <% if Rails.env.production? %>
-      <meta name="google-analytics-id" content="G-NL09GEZ6B5">
+      <meta name="google-analytics-tracking-id" content="G-NL09GEZ6B5">
       <%= javascript_include_tag "https://www.googletagmanager.com/gtag/js?id=G-NL09GEZ6B5" %>
     <% end %>
   </head>
