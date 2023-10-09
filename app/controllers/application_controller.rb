@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_subscription
-    return if current_user.active_subscription
+    return if !current_user || current_user.active_subscription
     redirect_to new_subscription_path
   end
 end
