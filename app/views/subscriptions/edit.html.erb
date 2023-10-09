@@ -1,0 +1,19 @@
+<div class="p-3 flex flex-col items-center pt-16">
+  <h1 class="text-2xl text-gray-900 mb-4"> Manage your Subscription </h1>
+  <div class="max-w-2xl w-full bg-gray-200 rounded-lg shadow-lg p-3 flex flex-col justify-between min-h-[40vh]">
+    <div class="grid grid-cols-3 lg:grid-cols-4 gap-4">
+      <div>
+        <p class="text-gray-900"> Renews on </p>
+        <p class="text-gray-700"> <%= Time.at(@subscription.current_period_end).strftime("%b %-d, %Y") %> </p>
+      </div>
+
+      <div>
+        <p class="text-gray-900"> Subscription Price </p>
+        <p class="text-gray-700"> <%= number_to_currency 4.99 %> </p>
+      </div>
+    </div>
+    <div class="flex justify-center">
+      <%= link_to "Cancel Subscription", subscriptions_cancel_path, data: { turbo_method: :post, turbo_confirm: "Are you sure? You will need to resubscribe to continue to use Tailwind Genius" }, class: "bg-gray-500 text-gray-100 rounded-lg shadow-lg p-2" %>
+    </div>
+  </div>
+</div>

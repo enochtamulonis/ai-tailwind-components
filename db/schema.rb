@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_09_072415) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_09_174020) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -50,6 +50,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_072415) do
     t.text "css_content"
     t.string "ai_prompt"
     t.text "ai_results"
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_ai_components_on_user_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.integer "status", default: 0
+    t.string "stripe_subscription_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -64,10 +75,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_09_072415) do
     t.string "provider"
     t.string "full_name"
     t.string "avatar_url"
+    t.string "customer_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "webhook_events", force: :cascade do |t|
+    t.string "source"
+    t.text "data"
+    t.string "external_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "state", default: 0
+    t.text "processing_errors"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "ai_components", "users"
+  add_foreign_key "subscriptions", "users"
 end

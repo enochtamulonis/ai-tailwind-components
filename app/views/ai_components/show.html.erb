@@ -1,5 +1,6 @@
+<%= turbo_stream_from @ai_component %>
 <div class="grid h-full w-full p-8">
-  <div class="h-[50vh] bg-gray-300 flex justify-center items-center">
+  <div class="h-[50vh] bg-gray-300 flex justify-center items-center overflow-auto" id="<%= dom_id(@ai_component) %>">
     <%== @ai_component.html_content rescue "There was an error in code" %>
   </div>
   
@@ -16,8 +17,19 @@
         </div>
       <% end %>
     </div>
-    <p class="text-xl text-gray-900"> Tailwind Component </p>
-    <div class="mt-4 bg-gray-300 p-3 max-w-5xl text-gray-900 rounded-lg">
+    <p class="text-xl text-gray-900 mt-3"> Tailwind Component </p>
+    <div class="mt-4 bg-gray-300 p-3 max-w-5xl text-gray-900 rounded-lg" data-controller="clipboard" >
+      <div class="flex justify-end">
+        <a href="#" data-action="clipboard#copy">
+          <div class="w-8" data-clipboard-target="copy">
+            <%= render Icons::ClipboardComponent.new %>
+          </div>
+          <div class="w-8 hidden" data-clipboard-target="success">
+            <%= render Icons::ClipboardCheckComponent.new %>
+          </div>
+        </a>
+      </div>
+      <%= text_field :html_content, "", value: @ai_component.html_content, class: "text-gray-100 hidden", data: { clipboard_target: "input" } %>
       <%= @ai_component.html_content %>
     </div>
   </div>

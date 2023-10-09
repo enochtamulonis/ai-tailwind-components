@@ -1,0 +1,25 @@
+<div class="grid lg:grid-cols-2">
+  <div class="p-3">
+    <h1 class="text-2xl text-gray-900 text-center mt-32"> Select a subscription </h1>
+    <p class="max-w-lg mx-auto text-lg text-gray-600 text-center"> To continue using Tailwind Genius and get access to unlimited creations and additions, select a membership </p>
+  </div>
+
+  <div class="mt-32">
+    <div class="max-w-2xl w-full bg-gray-300/75 p-3">
+      <form data-controller="stripe-element" 
+      data-stripe-element-payment-intent-url-value="<%= subscriptions_payment_intent_path %>" data-stripe-element-success-url-value="<%= subscriptions_success_url(user_id: current_user.id) %>" data-action="stripe-element#submit">
+        <div data-stripe-element-target="container">
+          <span class="text-center text-lg text-gray-200">
+            Preparing your secure checkout session <i class="fa fa-spin fa-spinner ml-2"> </i>
+          </span>
+        </div>
+        <div class="mt-4">
+          <button data-stripe-element-target="submit" class="text-gray-50 hidden bg-green-500 hover:bg-green-600 p-2 rounded-md w-full text-center shadow-md shadow-green-600 transition duration-300">
+            <span> Pay now</span>
+          </button>
+        </div>
+        <div data-stripe-element-target="message" class="hidden"></div>
+      </form>
+    </div>
+  </div>
+</div>

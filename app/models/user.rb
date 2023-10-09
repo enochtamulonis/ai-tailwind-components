@@ -4,6 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :omniauthable
   has_one_attached :avatar
+  after_create_commit :register_stripe_customer
+  has_many :ai_components
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.password = Devise.friendly_token.first(6)
@@ -21,5 +24,13 @@ class User < ApplicationRecord
     else
       "https://gravatar.com/avatar/c553f5893997262b965cb8fa9e34df6a?s=200&d=mp&r=g"
     end
+  end
+
+  def register_stripe_customer
+    RegisterStripeCustomerJob.perform_later(id)
+  end
+
+  def active_subscription
+    Subscription.where(user: self, status: :active).first
   end
 end

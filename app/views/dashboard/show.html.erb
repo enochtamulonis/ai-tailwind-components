@@ -1,11 +1,11 @@
 <%= turbo_stream_from @uniq_id %>
 
-<div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-[100vh] flex flex-col md:items-center pt-36 px-4 md:px-0">
-  <div id="<%= @uniq_id %>-container">
-    <h1 class="font-bold text-6xl md:text-7xl text-gray-100">Tailwind Genius</h1>
-    <p class="text-xl text-gray-100 mb-6">AI generated custom tailwindcss components </p>
+<div class="bg-gradient-to-r from-indigo-500 to-purple-500 h-[100vh] pt-36 px-4 md:px-0">
+  <div id="<%= @uniq_id %>-container" class="w-full">
+    <h1 class="font-bold text-6xl md:text-7xl text-gray-100 text-center">Tailwind Genius</h1>
+    <p class="text-xl text-gray-100 mb-6 text-center">AI generated custom tailwindcss components </p>
     
-    <div class="relative max-w-2xl w-full">
+    <div class="relative max-w-2xl w-full mx-auto">
       <%= form_with url: "/ai_components?uniq_id=#{@uniq_id}", model: AiComponent.new do |f| %>
         <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter a prompt to generate tailwindcss code" %>
         <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
@@ -17,5 +17,25 @@
         </div>
       <% end %>
     </div>
+
+    <% if false %>
+      <div class="max-w-5xl w-full mx-auto mt-32">
+        <%= link_to "Browse Collection", "#", class: "text-2xl text-gray-200" %>
+        <div class="grid grid-cols-3 gap-4 mt-4">
+          <div class="flex flex-col">
+            <div class="bg-gray-200 rounded-lg w-full h-64"> </div>
+            <p class="text-2xl text-gray-200 mt-2"> Forms </p>
+          </div>
+          <div class="flex flex-col">
+            <div class="bg-gray-200 rounded-lg w-full h-64"> </div>
+            <p class="text-2xl text-gray-200 mt-2"> Navbar </p>
+          </div>
+          <div class="flex flex-col">
+            <div class="bg-gray-200 rounded-lg w-full h-64"> </div>
+            <p class="text-2xl text-gray-200 mt-2"> Cards </p>
+          </div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -1,11 +1,9 @@
 class AiComponents::AdditionsController < ApplicationController
-  before_action :set_ai_component
+  before_action :set_ai_component, :authenticate_user_free_trys
 
   def create
-    service = TailwindComponentService.new(params[:ai_component][:ai_prompt], old_results: @ai_component.html_content)
-    service.call
-    @ai_component.update(html_content: service.html, ai_results: service.ai_results)
-    redirect_to @ai_component
+    TailwindComponentJob.perform_later(@ai_component.id, prompt: params[:ai_component][:ai_prompt])
+    render turbo_stream: turbo_stream.update(ActionView::RecordIdentifier.dom_id(@ai_component), partial: "shared/loader")
   end
 
   private

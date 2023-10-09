@@ -1,9 +1,9 @@
 class AiComponentsController < ApplicationController
-  before_action :authenticate_user!, :set_ai_component, only: %i[ show edit update destroy ]
-
+  before_action :set_ai_component, only: %i[ show edit update destroy ]
+  before_action :authenticate_user_free_trys, except: :show
   # GET /ai_components or /ai_components.json
   def index
-    @ai_components = AiComponent.all
+    @ai_components = current_user.ai_components.all
   end
 
   # GET /ai_components/1 or /ai_components/1.json
@@ -21,12 +21,14 @@ class AiComponentsController < ApplicationController
 
   # POST /ai_components or /ai_components.json
   def create
-    @ai_component = AiComponent.new(ai_component_params)
+    @klass = current_user ? current_user.ai_components : AiComponent
+    @ai_component = @klass.new(ai_component_params)
     @uniq_id = params[:uniq_id]
     @ai_component.broadcast_replace_to(@uniq_id, partial: "shared/loader", target: "#{@uniq_id}-container")
     if ai_component_params[:ai_prompt].present?
       service = TailwindComponentService.new(ai_component_params[:ai_prompt])
       service.call
+      session[:free_trys] = 0
       @ai_component.update(html_content: service.html, ai_results: service.ai_results)
     end
     respond_to do |format|
@@ -63,7 +65,6 @@ class AiComponentsController < ApplicationController
     end
   end
 
-  private
     # Use callbacks to share common setup or constraints between actions.
     def set_ai_component
       @ai_component = AiComponent.find(params[:id])
