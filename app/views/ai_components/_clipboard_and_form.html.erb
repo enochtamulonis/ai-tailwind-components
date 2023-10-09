@@ -1,0 +1,26 @@
+<div class="relative max-w-2xl w-full">
+  <%= form_with url: ai_component_additions_path(ai_component), model: AiComponent.new do |f| %>
+    <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted" %>
+    <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
+      <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
+        <div class="w-8">
+          <%= render Icons::CheckComponent.new %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+<div class="mt-4 bg-gray-300 p-3 max-w-5xl text-gray-900 rounded-lg" data-controller="clipboard" >
+  <div class="flex justify-end">
+    <a href="#" data-action="clipboard#copy">
+      <div class="w-8" data-clipboard-target="copy">
+        <%= render Icons::ClipboardComponent.new %>
+      </div>
+      <div class="w-8 hidden" data-clipboard-target="success">
+        <%= render Icons::ClipboardCheckComponent.new %>
+      </div>
+    </a>
+  </div>
+  <%= text_field :html_content, "", value: ai_component.html_content, class: "text-gray-100 hidden", data: { clipboard_target: "input" } %>
+  <%= ai_component.html_content %>
+</div>

@@ -4,7 +4,7 @@ class AiComponentsController < ApplicationController
   before_action :ensure_subscription
   # GET /ai_components or /ai_components.json
   def index
-    @ai_components = current_user.ai_components.all
+    @ai_components = current_user.ai_components.order(created_at: :desc)
   end
 
   # GET /ai_components/1 or /ai_components/1.json
