@@ -14,13 +14,14 @@
     <meta name="twitter:description" content="AI Generated Tailwindcss Components. Instantly create beautiful UI with Tailwind Genius">
     <meta name="twitter:image" content="<%= asset_url("screenshot.png") %>">
     <meta name="twitter:card" content="<%= asset_url("screenshot.png") %>">
-
+    <meta name="google-analytics-id" content="G-NL09GEZ6B5">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+    <%= javascript_include_tag "https://www.googletagmanager.com/gtag/js?id=G-NL09GEZ6B5" %>
   </head>
 
   <body>
