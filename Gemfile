@@ -46,7 +46,6 @@ gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
 gem "bootsnap", require: false
 
 gem "devise"
-gem "devise-tailwindcssed", git: "git@github.com:enochtamulonis/devise-tailwindcss-template.git"
 # Use Sass to process CSS
 # gem "sassc-rails"
 gem 'omniauth-google-oauth2'
