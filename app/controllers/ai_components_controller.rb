@@ -1,5 +1,5 @@
 class AiComponentsController < ApplicationController
-  before_action :set_ai_component, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, :set_ai_component, only: %i[ show edit update destroy ]
 
   # GET /ai_components or /ai_components.json
   def index
@@ -22,7 +22,8 @@ class AiComponentsController < ApplicationController
   # POST /ai_components or /ai_components.json
   def create
     @ai_component = AiComponent.new(ai_component_params)
-    
+    @uniq_id = params[:uniq_id]
+    @ai_component.broadcast_replace_to(@uniq_id, partial: "shared/loader", target: "#{@uniq_id}-container")
     if ai_component_params[:ai_prompt].present?
       service = TailwindComponentService.new(ai_component_params[:ai_prompt])
       service.call
