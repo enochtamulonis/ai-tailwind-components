@@ -4,7 +4,7 @@
     <%== @ai_component.html_content rescue "There was an error in code" %>
   </div>
   
-  <div class="max-w-5xl w-full mx-auto mt-8" id="<%= dom_id(@ai_component, :clipboard_and_form)%>">
+  <div id="<%= dom_id(@ai_component, :clipboard_and_form)%>">
     <%= render "clipboard_and_form", ai_component: @ai_component %>
   </div>
 </div>
