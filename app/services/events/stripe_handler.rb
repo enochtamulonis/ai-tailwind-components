@@ -15,6 +15,7 @@ module Events
           subscription_id = stripe_event.data.object.id
           subscription = Subscription.find_or_create_by(user: user, stripe_subscription_id: subscription_id)
           subscription.active!
+          WelcomeMailer.send_welcome_email(user).deliver_later
           user.broadcast_replace_to(user, partial: "subscriptions/success/success", target: ActionView::RecordIdentifier.dom_id(user, :success))
         end
       when 'invoice.payment_failed'
