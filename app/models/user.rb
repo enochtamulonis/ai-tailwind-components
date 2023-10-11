@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_one_attached :avatar
   after_create_commit :register_stripe_customer
   has_many :ai_components
+  has_many :user_roles
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -32,5 +33,14 @@ class User < ApplicationRecord
 
   def active_subscription
     Subscription.where(user: self, status: :active).first
+  end
+
+  def google_authed?
+    uid.present? && provider == "google_oauth2"
+  end
+  # User roles
+
+  def admin?
+    user_roles.find_by(role: Role.admin_role).present?
   end
 end
