@@ -1,2 +1,20 @@
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+<% if flash[:notice].present? %>
+  <div class="flex items-center justify-center bg-gradient-to-r from-purple-500 to-indigo-500 shadow-lg p-4 notice" data-controller="auto-disappear">
+    <div class="mr-4">
+      <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+      </svg>
+    </div>
+    <div>
+      <p class="text-gray-200"><%= notice %></p>
+    </div>
+  </div>
+<% end %>
+
+<% if flash[:alert].present? %>
+  <div class="flex items-center justify-center bg-gradient-to-r from-gray-500 to-red-500 shadow-lg p-4 alert" data-controller="auto-disappear">
+    <div>
+      <p class="text-gray-200"><%= alert %></p>
+    </div>
+  </div>
+<% end %>

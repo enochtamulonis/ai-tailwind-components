@@ -9,8 +9,6 @@ export default class extends Controller {
   }
 
   closeUnlessDropdown(e) {
-    console.log(e.target)
-    console.log(this.element.contains(e.target))
     if (!this.element.contains(e.target)) {
       this.close()
     }
