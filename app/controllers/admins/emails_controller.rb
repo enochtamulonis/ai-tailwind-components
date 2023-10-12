@@ -7,6 +7,7 @@ module Admins
     def create
       @email = Admin::Email.new(email_params)
       if @email.save
+        AdminEmailJob.perform_later(@email.id)
         redirect_to admin_path, notice: "Email was succesfully sent"
       else
         render :new
@@ -16,7 +17,7 @@ module Admins
     private
 
     def email_params
-      params.require(:email).permit(:subject, :body, :to_user_ids)
+      params.require(:admin_email).permit(:subject, :body, :send_to_all)
     end
   end
 end
