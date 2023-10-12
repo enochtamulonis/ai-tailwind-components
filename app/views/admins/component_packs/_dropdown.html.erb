@@ -1,0 +1,10 @@
+<div class="absolute h-56 w-56 bg-gray-400/75 backdrop-blur rounded-lg hidden" id="<%= dom_id(component_pack, :dropdown) %>" data-dropdown-target="menu">
+  <div class="flex flex-col items-center gap-4 p-2">
+    <% if component_pack.featured? %>
+      <%= link_to "Turn off featured", admins_component_pack_turn_off_featured_path(component_pack), class: "text-gray-900 text-lg", data: { turbo_method: :post } %>
+    <% else %>
+      <%= link_to "Make Featured", admins_component_pack_make_featured_path(component_pack), class: "text-gray-900 text-lg", data: { turbo_method: :post } %>
+    <% end %>
+    <%= link_to "Edit", edit_admins_component_pack_path(component_pack) %>
+  </div>
+</div>

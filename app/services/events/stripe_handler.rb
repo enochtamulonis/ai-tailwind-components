@@ -7,7 +7,7 @@ module Events
       when 'customer.subscription.updated'
         # Create subscription update user
         if Rails.env.production?
-          sleep 3
+          sleep 3.5
         end
         if stripe_event.data.object.status == "active"
           metadata = stripe_event.data.object.metadata

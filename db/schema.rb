@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_12_004926) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_12_180413) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -52,6 +52,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_004926) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "admin_emails", force: :cascade do |t|
+    t.string "subject"
+    t.string "body"
+    t.text "to_user_ids"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "ai_components", force: :cascade do |t|
     t.text "html_content"
     t.string "name"
@@ -62,6 +70,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_004926) do
     t.text "ai_results"
     t.bigint "user_id"
     t.bigint "component_pack_id"
+    t.string "guest_token"
+    t.integer "free_additions", default: 5
     t.index ["component_pack_id"], name: "index_ai_components_on_component_pack_id"
     t.index ["user_id"], name: "index_ai_components_on_user_id"
   end
@@ -70,6 +80,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_004926) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "featured", default: false
+    t.text "container_css"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -84,6 +96,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_004926) do
     t.string "stripe_subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "ignore_subscription", default: false
     t.index ["user_id"], name: "index_subscriptions_on_user_id"
   end
 
@@ -109,6 +122,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_12_004926) do
     t.string "full_name"
     t.string "avatar_url"
     t.string "customer_id"
+    t.integer "daily_trys", default: 5
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

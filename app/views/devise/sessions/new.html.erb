@@ -2,9 +2,9 @@
   <% if params[:more_info] == "true" %>
   <div class="hidden lg:flex relative justify-center">
       <%= image_tag "ai-brain.jpg", class: "w-full h-[100vh] object-cover" %>
-      <div class="absolute top-32 w-3/4 h-96 bg-gray-700/75 backdrop-blur pt-24">
-          <p class="text-lg text-gray-200 text-center"> Create an account to continue using Tailwind Genius </p>
-          <p class="text-2xl text-gray-100 text-center mt-4"> <%= number_to_currency(4.99) %>/monthly </p>
+      <div class="absolute top-32 w-3/4 h-96 bg-gray-700/75 backdrop-blur pt-16">
+          <p class="text-lg text-gray-200 text-center"> Please create an account to continue using Tailwind Genius </p>
+          <p class="max-w-md mx-auto text-lg text-gray-300 text-center mt-4"> We offer a <span class="text-indigo-500 font-semibold"> free </span> version and a paid membership <span class="text-green-500 font-semibold">$4.99</span>/<span class="text-yellow-500 font-semibold">monthly</span>  </p>
           <div class="mt-8 grid grid-cols-3 gap-4 px-4">
               <div class="text-lg text-center text-gray-100 flex flex-col items-center"> 
               <span> Get access to unlimited components </span> 
@@ -26,7 +26,7 @@
     <div class="w-full max-w-2xl mx-auto mt-16">
         <h1 class="font-hairline mb-6 text-center text-gray-800 text-lg">Log In</h1>
 
-        <div class="lg:bg-gray-300/75 mb-4 px-8 pt-6 pb-8 rounded shadow-md">
+        <div class="lg:bg-gray-300/75 mb-4 px-8 pt-6 pb-8 rounded-lg shadow-md">
             <%= form_for(resource,
                         as: resource_name,
                         url: session_path(resource_name),

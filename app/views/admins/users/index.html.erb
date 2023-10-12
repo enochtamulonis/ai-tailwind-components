@@ -31,6 +31,15 @@
             </span>
           <% end %>
         </div>
+
+        <% if user.active_subscription %>
+          <div data-controller="dropdown" data-action="click@window->dropdown#closeUnlessDropdown" class="relative">
+            <%= link_to "#", data: { action: "dropdown#toggle" } do %>
+              <%= render Icons::EllipsisVerticalComponent.new %>
+            <% end %>
+            <%= render "dropdown", user: user %>
+          </div>
+        <% end %>
       </div>
     <% end %>
   </div>

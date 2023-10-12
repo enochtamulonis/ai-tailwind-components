@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { 
     omniauth_callbacks: 'omniauth_callbacks'
   }
-  resources :ai_components, only: [:create, :show, :index] do
+  resources :ai_components, only: [:create, :show, :index, :destroy] do
     scope module: :ai_components do
       resources :additions, only: [:create]
     end
@@ -20,9 +20,20 @@ Rails.application.routes.draw do
   post "/webhook_events/:source", to: "webhook_events#create"
   get "/admin", to: "admins#index"
   namespace :admins do
-    resources :users, only: [:index]
-    resources :component_packs
+    resources :users, only: [:index] do
+      post "listen_to_subscription", to: "users#listen_to_subscription"
+      post "ignore_subscription", to: "users#ignore_subscription"
+    end
+    resources :component_packs do
+      post "make_featured", to: "component_packs#make_featured"
+      post "turn_off_featured", to: "component_packs#turn_off_featured"
+      scope module: :component_packs do
+        resources :ai_components, only: [:create]
+      end
+    end
+    resources :emails, only: [:new, :create, :index]
   end
+  resources :free_component_packs, only: [:show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

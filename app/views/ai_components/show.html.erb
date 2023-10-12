@@ -1,5 +1,10 @@
 <%= turbo_stream_from @ai_component %>
 <div class="grid h-full w-full p-8">
+  <% if current_user&.admin? %>
+    <div class="flex justify-end">
+      <%= link_to "Destroy", ai_component_path(@ai_component), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This is permanent"}, class: "bg-red-500 text-red-50 p-2 rounded-lg" %>
+    </div>
+  <% end %>
   <div class="h-[50vh] bg-gray-300 flex justify-center items-center overflow-auto" id="<%= dom_id(@ai_component) %>">
     <%== @ai_component.html_content rescue "There was an error in code" %>
   </div>
@@ -8,26 +13,38 @@
     <div class="relative max-w-2xl w-full">
       <% if current_user %>
         <%= turbo_frame_tag :ai_prompt do %>
+          <div class="flex items-center mb-4">
+            <span class="ml-2"> You have <%= @ai_component.free_additions %> free additions </span>
+            <%= link_to "Upgrade for unlimited", new_user_session_path, class: "text-indigo-500 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 ml-2" %> 
+          </div>
           <%= form_with url: ai_component_additions_path(@ai_component), model: AiComponent.new do |f| %>
-            <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted", autofocus: true %>
+            <div class="relative">
+              <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted", autofocus: true %>
+              <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
+                <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
+                  <div class="w-8">
+                    <%= render Icons::CheckComponent.new %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      <% else %>
+        <div class="flex items-center mb-4">
+          <%= link_to "Create an account", new_user_session_path, class: "text-indigo-500 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100" %> 
+          <span class="ml-2"> to make additions </span>
+        </div>
+        <%= form_with url: ai_component_additions_path(@ai_component), model: AiComponent.new do |f| %>
+          <div class="flex w-full relative">
+            <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted", autofocus: true, disabled: true %>
             <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
-              <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
+              <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center", disabled: true do %>
                 <div class="w-8">
                   <%= render Icons::CheckComponent.new %>
                 </div>
               <% end %>
             </div>
-          <% end %>
-        <% end %>
-      <% else %>
-        <%= form_with url: ai_component_additions_path(@ai_component), model: AiComponent.new do |f| %>
-          <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted", autofocus: true %>
-          <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
-            <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
-              <div class="w-8">
-                <%= render Icons::CheckComponent.new %>
-              </div>
-            <% end %>
           </div>
         <% end %>
       <% end %>

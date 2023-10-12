@@ -3,17 +3,5 @@
     Create new component pack
   </h1>
 
-  <%= form_with model: @component_pack, url: admins_component_packs_path do |f| %>
-    <div class="flex flex-col p-2">
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-    </div>
-
-    <div class="flex flex-col p-2">
-      <%= f.label :description %>
-      <%= f.rich_text_area :description %>
-    </div>
-
-    <%= f.submit class: "text-indigo-100 bg-indigo-500 rounded-lg p-2 cursor-pointer" %>
-  <% end %>
+  <%= render "form", component_pack: @component_pack, url: admins_component_packs_path %>
 </div>

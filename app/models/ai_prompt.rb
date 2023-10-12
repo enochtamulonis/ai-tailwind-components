@@ -9,7 +9,8 @@ class AiPrompt
       client = OpenAI::Client.new
       question = "Make me a tailwindcss component #{ai_prompt}. "
       question += "Make it look pretty "
-      question += "only return the html don't include any javascript code or cdns or css"
+      question += "only give me the html"
+      question += "I don't want javascript or ( <!DOCTYPE html>, <html>, <head>, etc...) content only the html with tailwind classes"
       response = client.chat(
           parameters: { 
               model: "gpt-3.5-turbo", # Required.
