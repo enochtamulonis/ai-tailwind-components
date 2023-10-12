@@ -1,0 +1,20 @@
+<div class="max-w-7xl w-full mx-auto">
+  <div class="mt-4 bg-gray-300 p-3 text-gray-900 rounded-lg" data-controller="clipboard">
+    <div class="flex justify-end w-full">
+      <a href="#" data-action="clipboard#copy">
+        <div class="w-8" data-clipboard-target="copy">
+          <%= render Icons::ClipboardComponent.new %>
+        </div>
+        <div class="w-8 hidden" data-clipboard-target="success">
+          <%= render Icons::ClipboardCheckComponent.new %>
+        </div>
+      </a>
+    </div>
+    <%= text_field :html_content, "", value: ai_component.html_content, class: "text-gray-100 hidden", data: { clipboard_target: "input" } %>
+    <pre>
+      <code class="language-html">
+        <%= ai_component.html_content %>
+      </code>
+    </pre>
+  </div>
+</div>

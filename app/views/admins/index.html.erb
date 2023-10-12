@@ -8,6 +8,11 @@
 
     <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= @active_subscriptions %> users actively subscribed</p>
   </div>
+  
+  <div id="actions" class="max-w-5xl w-full mx-auto mt-8">
+    <%= link_to "Component packs", admins_component_packs_path, class: "text-xl text-gray-200 bg-green-500 rounded-lg p-2" %>
+  </div>
+
   <div class="max-w-5xl w-full mx-auto mt-8">
     <p class="text-gray-100 mt-3"> <%= number_to_currency(@active_subscriptions.to_f * 4.99) %> monthly revenue 😁🥳 </p>
     <%= turbo_frame_tag :users, src: admins_users_path %>

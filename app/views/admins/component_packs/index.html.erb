@@ -1,0 +1,9 @@
+<div class="max-w-5xl w-full mx-auto mt-8">
+  <%= link_to "New component pack", new_admins_component_pack_path, class: "bg-indigo-500 text-indigo-50 rounded-lg p-2" %>
+</div
+>
+<div class="max-w-5xl w-full mx-auto grid grid-cols-4 gap-4 mt-6">
+  <% @component_packs.each do |component_pack| %>
+    <%= render "component_pack", component_pack: component_pack %>
+  <% end %>
+</div>

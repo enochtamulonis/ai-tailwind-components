@@ -3,7 +3,8 @@ class AiComponents::AdditionsController < ApplicationController
 
   def create
     TailwindComponentJob.perform_later(@ai_component.id, prompt: params[:ai_component][:ai_prompt])
-    render turbo_stream: turbo_stream.update(ActionView::RecordIdentifier.dom_id(@ai_component), partial: "shared/loader")
+    @ai_component.broadcast_update_to(@ai_component, target: ActionView::RecordIdentifier.dom_id(@ai_component), partial: "shared/loader")
+    redirect_to ai_component_path(@ai_component)
   end
 
   private

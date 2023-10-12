@@ -3,6 +3,11 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="clipboard"
 export default class extends Controller {
   static targets = ["input", "success", "copy"]
+
+  connect() {
+    hljs.highlightAll();
+  }
+  
   copy(event) {
     event.preventDefault()
     // Get the text field  

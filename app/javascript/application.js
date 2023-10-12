@@ -1,6 +1,8 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "controllers"
+import "trix"
+import "@rails/actiontext"
 
 document.addEventListener("turbo:load", (event) => {
   let trackingId = document.querySelector("meta[name='google-analytics-tracking-id']")?.content
@@ -10,5 +12,4 @@ document.addEventListener("turbo:load", (event) => {
     gtag('js', new Date());
     gtag('config', trackingId); 
   }
-  hljs.highlightAll();
 })

@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "/admin", to: "admins#index"
   namespace :admins do
     resources :users, only: [:index]
+    resources :component_packs
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
