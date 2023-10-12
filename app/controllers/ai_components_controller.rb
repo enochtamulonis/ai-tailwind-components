@@ -56,10 +56,7 @@ class AiComponentsController < ApplicationController
     end
     @ai_component.destroy
 
-    respond_to do |format|
-      format.html { redirect_to admin_component_pack(@ai_component), notice: "Ai component was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to admins_component_packs_path, notice: "Ai component was successfully destroyed.", status: :see_other
   end
 
   private
