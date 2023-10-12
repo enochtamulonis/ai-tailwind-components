@@ -1,8 +1,14 @@
 module Subscriptions
   class PaymentIntentController < ApplicationController
     def create
-      unless current_user.customer_id
-        current_user.register_stripe_customer
+      if !current_user.customer_id.present?
+        stripe_customer = Stripe::Customer.create({
+          description: 'Registered user for Tailwind Genius account.',
+          email: current_user.email,
+          name: current_user.full_name
+        })
+        current_user.customer_id = stripe_customer.id
+        current_user.save!
       end
 
       subscription = Stripe::Subscription.create(

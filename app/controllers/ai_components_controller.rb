@@ -29,9 +29,9 @@ class AiComponentsController < ApplicationController
     if ai_component_params[:ai_prompt].present?
       service = TailwindComponentService.new(ai_component_params[:ai_prompt])
       service.call
-      session[:free_trys] = 0
       @ai_component.update(html_content: service.html, ai_results: service.ai_results)
     end
+    session[:free_trys] = 0
     respond_to do |format|
       if @ai_component.save
         format.html { redirect_to ai_component_url(@ai_component), notice: "Ai component was successfully created." }

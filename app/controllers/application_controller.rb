@@ -5,7 +5,8 @@ class ApplicationController < ActionController::Base
     when nil
       session[:free_trys] = 1
     when 0
-      redirect_to new_user_session_path, alert: "Create an account to continue using Tailwind Genius"
+      session[:ai_component_id] = params[:id]
+      redirect_to new_user_session_path(more_info: true), alert: "Create an account to continue using Tailwind Genius"
     when 1
       # okay keep going
     end
