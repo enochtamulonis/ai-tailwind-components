@@ -19,6 +19,9 @@ Rails.application.routes.draw do
   resource :dashboard, only: [:show], controller: :show
   post "/webhook_events/:source", to: "webhook_events#create"
   get "/admin", to: "admins#index"
+  namespace :admins do
+    resources :users, only: [:index]
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

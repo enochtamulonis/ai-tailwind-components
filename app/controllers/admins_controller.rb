@@ -1,14 +1,7 @@
-class AdminsController < ApplicationController
-  before_action :authorize_admin
+class AdminsController < Admins::BaseController
   def index
-
-  end
-
-  private
-
-  def authorize_admin
-    if !current_user || !current_user.admin?
-      redirect_to root_path, alert: "Sorry. you do not have access to this page"
-      end
+    @active_subscriptions = Subscription.joins(:user)
+    .where.not("users.email LIKE ? OR users.email LIKE ?", "%wavclouds%", "%enochtamulonis%")
+    .where(status: :active).count
   end
 end
