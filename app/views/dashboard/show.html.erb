@@ -18,20 +18,22 @@
       <% end %>
     </div>
 
-    <div class="max-w-5xl w-full mx-auto mt-32">
-      <%= link_to "Browse Collection", "#", class: "text-2xl text-gray-200" %>
-      <div class="grid grid-cols-3 gap-4 mt-4">
-        <% @component_packs.each do |component_pack| %>
-          <%= link_to free_component_pack_path(component_pack) do %>
-            <div class="flex flex-col">
-              <div class="bg-gray-200 rounded-lg w-full h-64 overflow-hidden"> 
-                <%= image_tag component_pack.image, class: "h-full object-cover" %>
+    <% if @component_packs.any? %>
+      <div class="max-w-5xl w-full mx-auto mt-32">
+        <%= link_to "Browse Collection", "#", class: "text-2xl text-gray-200" %>
+        <div class="grid grid-cols-3 gap-4 mt-4">
+          <% @component_packs.each do |component_pack| %>
+            <%= link_to free_component_pack_path(component_pack) do %>
+              <div class="flex flex-col">
+                <div class="bg-gray-200 rounded-lg w-full h-64 overflow-hidden"> 
+                  <%= image_tag component_pack.image, class: "h-full object-cover" %>
+                </div>
+                <p class="text-2xl text-gray-200 mt-2"> <%= component_pack.name %> </p>
               </div>
-              <p class="text-2xl text-gray-200 mt-2"> <%= component_pack.name %> </p>
-            </div>
+            <% end %>
           <% end %>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
