@@ -11,7 +11,7 @@
 
   <div class="max-w-7xl w-full mx-auto mt-8 mb-4">
     <div class="relative max-w-2xl w-full">
-      <% if current_user&.active_subscription&.present? || (!current_user&.active_subscription && @ai_component.free_additions.positive?) %>
+      <% if current_user && (current_user&.active_subscription&.present? || (!current_user&.active_subscription && @ai_component.free_additions.positive?)) %>
         <%= turbo_frame_tag :ai_prompt do %>
           <% if !current_user.active_subscription %>
             <div class="flex items-center mb-4">
