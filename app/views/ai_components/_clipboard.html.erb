@@ -8,7 +8,13 @@
             <p class="text-gray-900"> Sign in to edit code </p>
           <% else %>
             <% if user.active_subscription %>
-              <a href="<%= new_ai_component_edit_code_path(ai_component) %>" class="text-gray-900"> edit code </a>
+              <% if ai_component.component_pack.present? %>
+                <% if user.admin? %>
+                    <a href="<%= new_ai_component_edit_code_path(ai_component) %>" class="text-gray-900"> edit code </a>
+                <% end %>
+              <% else %>
+                <a href="<%= new_ai_component_edit_code_path(ai_component) %>" class="text-gray-900"> edit code </a>
+              <% end %>
             <% else %>
               <p class="text-gray-900"> Upgrade membership to edit code </p>
             <% end %>

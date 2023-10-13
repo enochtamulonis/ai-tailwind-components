@@ -35,7 +35,9 @@
             <%= link_to free_component_pack_path(component_pack) do %>
               <div class="flex flex-col">
                 <div class="bg-gray-200 rounded-lg w-full h-64 overflow-hidden"> 
-                  <%= image_tag component_pack.image, class: "h-full object-cover" %>
+                  <% if component_pack.image.attached? %>
+                      <%= image_tag component_pack.image, class: "h-full object-cover" %>
+                  <% end %>
                 </div>
                 <p class="text-2xl text-gray-200 mt-2"> <%= component_pack.name %> </p>
               </div>

@@ -11,18 +11,19 @@ class AiComponents::AdditionsController < ApplicationController
     else
       return redirect_to new_user_session_path(more_info: true), alert: "Create an account to continue using Tailwind Genius"
     end
-
+    user = nil
     if @ai_component.component_pack.present? && !current_user.admin?
       @ai_component = @ai_component.dup
       @ai_component.user = current_user
       @ai_component.component_pack_id = nil
       @ai_component.save
+      user = current_user
     else
       @ai_component.update(free_additions: @ai_component.free_additions - 1) if !current_user.active_subscription
       @ai_component.broadcast_update_to(@ai_component, target: ActionView::RecordIdentifier.dom_id(@ai_component), partial: "shared/loader")  
     end
 
-    TailwindComponentJob.perform_later(@ai_component.id, prompt: params[:ai_component][:ai_prompt])
+    TailwindComponentJob.perform_later(@ai_component.id, prompt: params[:ai_component][:ai_prompt], user: user)
     redirect_to ai_component_path(@ai_component)
   end
 
