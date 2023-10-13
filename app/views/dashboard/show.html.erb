@@ -29,7 +29,7 @@
 
     <% if @component_packs.any? %>
       <div class="max-w-5xl w-full mx-auto mt-32">
-        <%= link_to "Browse Collection", "#", class: "text-2xl text-gray-200" %>
+        <p class="text-2xl text-gray-200"> Browse Free Collection </p>
         <div class="grid grid-cols-3 gap-4 mt-4">
           <% @component_packs.each do |component_pack| %>
             <%= link_to free_component_pack_path(component_pack) do %>
