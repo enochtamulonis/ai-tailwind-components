@@ -12,13 +12,7 @@
   <div class="max-w-7xl w-full mx-auto mt-8 mb-4">
     <div class="relative max-w-2xl w-full">
       <% if current_user && (current_user&.active_subscription&.present? || (!current_user&.active_subscription && @ai_component.free_additions.positive?)) %>
-        <%= turbo_frame_tag :ai_prompt do %>
-          <% if !current_user.active_subscription %>
-            <div class="flex items-center mb-4">
-              <span class="ml-2"> You have <%= @ai_component.free_additions %> free additions </span>
-              <%= link_to "Upgrade for unlimited", new_subscription_path, class: "text-indigo-500 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 ml-2", data: { turbo_frame: "_top" } %> 
-            </div>
-          <% end %>
+        <% if @ai_component.component_pack.present? %>
           <%= form_with url: ai_component_additions_path(@ai_component), model: AiComponent.new do |f| %>
             <div class="relative">
               <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted", autofocus: true %>
@@ -30,6 +24,27 @@
                 <% end %>
               </div>
             </div>
+          <% end %>
+        <% else %>
+          <%= turbo_frame_tag :ai_prompt do %>
+            <% if !current_user.active_subscription %>
+              <div class="flex items-center mb-4">
+                <span class="ml-2"> You have <%= @ai_component.free_additions %> free additions </span>
+                <%= link_to "Upgrade for unlimited", new_subscription_path, class: "text-indigo-500 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 ml-2", data: { turbo_frame: "_top" } %> 
+              </div>
+            <% end %>
+            <%= form_with url: ai_component_additions_path(@ai_component), model: AiComponent.new do |f| %>
+              <div class="relative">
+                <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted", autofocus: true %>
+                <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
+                  <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
+                    <div class="w-8">
+                      <%= render Icons::CheckComponent.new %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           <% end %>
         <% end %>
       <% else %>

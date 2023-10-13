@@ -8,9 +8,17 @@ class AiComponentsController < ApplicationController
   # GET /ai_components/1 or /ai_components/1.json
   def show
     if @ai_component.user
-      if !current_user ||  (current_user != @ai_component.user)
+      if !current_user || (current_user != @ai_component.user)
         return redirect_to root_path, alert: "You are not authorized to view this page"
       end
+    end
+    if current_user && !@ai_component.component_pack.present?
+      if session[:guest_ai_component_id].present? && session[:guest_ai_component_id] == @ai_component.id
+        @ai_component.update(user: current_user)
+      end
+    else
+      session[:guest_ai_component_id] = @ai_component.id
+      session["user_return_to"] = request.original_url
     end
   end
 

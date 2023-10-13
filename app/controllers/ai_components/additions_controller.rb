@@ -18,6 +18,12 @@ class AiComponents::AdditionsController < ApplicationController
       @ai_component.component_pack_id = nil
       @ai_component.save
       user = current_user
+      if !current_user.active_subscription
+        if current_user.daily_trys == 0
+          redirect_to new_subscription_path, alert: "To create any more components today you must purchase a membership"
+        end
+        user.update(daily_trys: user.daily_trys - 1)
+      end
     else
       @ai_component.update(free_additions: @ai_component.free_additions - 1) if !current_user.active_subscription
       @ai_component.broadcast_update_to(@ai_component, target: ActionView::RecordIdentifier.dom_id(@ai_component), partial: "shared/loader")  
