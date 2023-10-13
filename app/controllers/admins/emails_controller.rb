@@ -17,7 +17,7 @@ module Admins
     private
 
     def email_params
-      params.require(:admin_email).permit(:subject, :body, :send_to_all)
+      params.require(:admin_email).permit(:subject, :body, :send_to_all, :send_to_free_users, :send_to_subscribed)
     end
   end
 end

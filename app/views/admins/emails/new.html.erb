@@ -14,6 +14,16 @@
         <%= form.check_box :send_to_all %>
       </div>
 
+      <div class="flex items-center">
+        <%= form.label :send_to_subscribed, "Send To Subscribed", class: "mr-2" %>
+        <%= form.check_box :send_to_subscribed %>
+      </div>
+
+      <div class="flex items-center">
+        <%= form.label :send_to_unsubscribed, "Send To No Membership", class: "mr-2" %>
+        <%= form.check_box :send_to_free_users %>
+      </div>
+
       <%= form.submit class: "bg-blue-500 text-blue-50 py-2 cursor-pointer hover:bg-blue-300 hover:text-blue-700" %>
     </div>
   <% end %>

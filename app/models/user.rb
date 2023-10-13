@@ -18,6 +18,15 @@ class User < ApplicationRecord
     end
   end
 
+  def self.free_users
+    includes(:subscription).where.not(subscription: { status: :active }).or(
+      includes(:subscription).where(subscription: { id: nil }))
+  end
+
+  def self.paid_users
+    includes(:subscription).where(subscription: { status: :active })
+  end
+
   def avatar_display
     if avatar.attached?
       avatar
