@@ -1,12 +1,13 @@
+<% user = defined?(user) ? user : ai_component.user %>
 <div class="max-w-7xl w-full mx-auto">
   <div class="mt-4 bg-gray-300 p-3 text-gray-900 rounded-lg" data-controller="clipboard">
     <%= turbo_frame_tag :code do %>
       <div class="flex justify-between w-full" data-controller="highlight">
         <div class="flex items-center">
-          <% if !ai_component.user %>
+          <% if !user %>
             <p class="text-gray-900"> Sign in to edit code </p>
           <% else %>
-            <% if ai_component.user.active_subscription %>
+            <% if user.active_subscription %>
               <a href="<%= new_ai_component_edit_code_path(ai_component) %>" class="text-gray-900"> edit code </a>
             <% else %>
               <p class="text-gray-900"> Upgrade membership to edit code </p>

@@ -59,6 +59,6 @@
     </div>
   </div>
   <div id="<%= dom_id(@ai_component, :clipboard)%>">
-    <%= render "clipboard", ai_component: @ai_component %>
+    <%= render "clipboard", ai_component: @ai_component, user: current_user %>
   </div>
 </div>
