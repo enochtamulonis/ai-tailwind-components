@@ -1,20 +1,33 @@
 <div class="max-w-7xl w-full mx-auto">
   <div class="mt-4 bg-gray-300 p-3 text-gray-900 rounded-lg" data-controller="clipboard">
-    <div class="flex justify-end w-full">
-      <a href="#" data-action="clipboard#copy">
-        <div class="w-8" data-clipboard-target="copy">
-          <%= render Icons::ClipboardComponent.new %>
+    <%= turbo_frame_tag :code do %>
+      <div class="flex justify-between w-full" data-controller="highlight">
+        <div class="flex items-center">
+          <% if !current_user %>
+            <p class="text-gray-900"> Sign in to edit code </p>
+          <% else %>
+            <% if current_user.active_subscription %>
+              <a href="<%= new_ai_component_edit_code_path(ai_component) %>" class="text-gray-900"> edit code </a>
+            <% else %>
+              <p class="text-gray-900"> Upgrade membership to edit code </p>
+            <% end %>
+          <% end %>
         </div>
-        <div class="w-8 hidden" data-clipboard-target="success">
-          <%= render Icons::ClipboardCheckComponent.new %>
-        </div>
-      </a>
-    </div>
-    <%= text_field :html_content, "", value: ai_component.html_content, class: "text-gray-100 hidden", data: { clipboard_target: "input" } %>
-    <pre>
-      <code class="language-html">
-        <%= ai_component.html_content %>
-      </code>
-    </pre>
+        <a href="#" data-action="clipboard#copy">
+          <div class="w-8" data-clipboard-target="copy">
+            <%= render Icons::ClipboardComponent.new %>
+          </div>
+          <div class="w-8 hidden" data-clipboard-target="success">
+            <%= render Icons::ClipboardCheckComponent.new %>
+          </div>
+        </a>
+      </div>
+      <%= text_field :html_content, "", value: ai_component.html_content, class: "text-gray-100 hidden", data: { clipboard_target: "input" } %>
+      <pre>
+        <code class="language-html">
+          <%= ai_component.html_content %>
+        </code>
+      </pre>
+    <% end %>
   </div>
 </div>

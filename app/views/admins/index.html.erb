@@ -7,6 +7,17 @@
     <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= User.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).count %> users joined the site today </p>
 
     <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= @active_subscriptions %> users actively subscribed</p>
+  
+    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= AiComponent.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).count %> components created today</p>
+
+    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= AiComponent.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).where.not(user_id: nil).count %> created by authed user today</p>
+
+    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= @components_by_subscribed %> created by paid user today</p>
+    
+    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= Subscription.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now, status: :active).count %> new subscriptions today</p>
+    
+    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= number_to_currency(Subscription.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now, status: :active).count * 4.99) %> increase in MRR </p>
+
   </div>
   
   <div id="actions" class="max-w-5xl w-full mx-auto mt-8 grid grid-cols-4 gap-8">

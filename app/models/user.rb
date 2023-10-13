@@ -7,6 +7,7 @@ class User < ApplicationRecord
   after_create_commit :register_stripe_customer
   has_many :ai_components
   has_many :user_roles
+  has_one :subscription
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

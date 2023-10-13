@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :ai_components, only: [:create, :show, :index, :destroy] do
     scope module: :ai_components do
       resources :additions, only: [:create]
+      resources :edit_code, only: [:new, :create], controller: :edit_code
     end
   end
   resources :subscriptions, only: [:new, :create, :edit]

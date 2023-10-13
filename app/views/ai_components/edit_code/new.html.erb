@@ -1,0 +1,14 @@
+<%= turbo_frame_tag :code do %>
+  <%= form_with model: @ai_component, url: ai_component_edit_code_index_path(@ai_component), method: :post do |f| %>
+    <div class="flex flex-col gap-4">
+      <div class="flex items-center gap-4">
+        <%= f.label :html_content, "HTML" %>
+        <%= link_to "Cancel", ai_component_path(@ai_component), class: "bg-gray-700 text-gray-100 hover:bg-gray-600 p-2 rounded-lg" %>
+        <div class="ml-auto">
+          <%= f.submit "✓ Save", class: "bg-green-600 text-green-100 hover:bg-green-600 p-2 rounded-lg cursor-pointer" %>
+        </div>
+      </div>
+      <%= f.text_area :html_content, value: @ai_component.html_content, class: "h-[40vh] w-full" %>
+    </div>
+  <% end %>
+<% end %>
