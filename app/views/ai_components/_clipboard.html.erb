@@ -3,10 +3,10 @@
     <%= turbo_frame_tag :code do %>
       <div class="flex justify-between w-full" data-controller="highlight">
         <div class="flex items-center">
-          <% if !current_user %>
+          <% if !ai_component.user %>
             <p class="text-gray-900"> Sign in to edit code </p>
           <% else %>
-            <% if current_user.active_subscription %>
+            <% if ai_component.user.active_subscription %>
               <a href="<%= new_ai_component_edit_code_path(ai_component) %>" class="text-gray-900"> edit code </a>
             <% else %>
               <p class="text-gray-900"> Upgrade membership to edit code </p>

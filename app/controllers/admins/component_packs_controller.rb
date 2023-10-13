@@ -1,6 +1,6 @@
 module Admins
   class ComponentPacksController < Admins::BaseController
-    before_action :set_component_pack, only: [:show, :edit, :update]
+    before_action :set_component_pack, only: [:show, :edit, :update, :destroy]
     def index
       @component_packs = ComponentPack.all
     end
@@ -33,6 +33,12 @@ module Admins
         redirect_to admins_component_pack_path(@component_pack)
       else
         render :new
+      end
+    end
+
+    def destroy
+      if @component_pack.destroy
+        redirect_to admins_component_packs_path, alert: "Successfully deleted that component pack", status: :see_other
       end
     end
 
