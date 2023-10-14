@@ -25,7 +25,7 @@ module.exports = {
   safelist: [
     {
       pattern: /./, // the "." means "everything",
-      variants: ['md', 'lg'],
+      variants: ['md'],
     },
   ],
 }
