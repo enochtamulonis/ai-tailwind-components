@@ -1,6 +1,6 @@
 <% user = defined?(user) ? user : ai_component.user %>
-<div class="max-w-7xl w-full mx-auto">
-  <div class="mt-4 bg-gray-300 p-3 text-gray-900 rounded-lg" data-controller="clipboard">
+<div class="max-w-7xl w-full mx-auto overflow-hidden">
+  <div class="mt-4 md:bg-gray-300 p-3 text-gray-900 rounded-lg" data-controller="clipboard">
     <%= turbo_frame_tag :code do %>
       <div class="flex justify-between w-full" data-controller="highlight">
         <div class="flex items-center">

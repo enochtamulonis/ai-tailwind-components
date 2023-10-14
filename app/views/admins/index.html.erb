@@ -1,23 +1,23 @@
 <div class="w-full min-h-screen bg-gradient-to-r from-indigo-500 to-pink-500 p-4">
   <h1 class="text-gray-200 text-center text-3xl mt-8"> Admin </h1>
   
-  <div class="max-w-5xl w-full mx-auto grid grid-cols-3 gap-8">
-    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= User.all.count %> users joined the site so far  </p>
+  <div class=" w-full mx-auto grid md:grid-cols-3 lg:grid-cols-5 gap-8">
+    <p class="text-gray-100 mt-3 h-24 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= User.all.count %> users joined the site so far  </p>
 
-    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= User.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).count %> users joined the site today </p>
-
-    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= @active_subscriptions %> users actively subscribed</p>
+    <p class="text-gray-100 mt-3 h-24 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= @active_subscriptions %> users actively subscribed</p>
   
-    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= AiComponent.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).count %> components created today</p>
+    <p class="text-gray-100 mt-3 h-24 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= User.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).count %> users joined the site today </p>
 
-    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= AiComponent.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).where.not(user_id: nil).count %> created by authed user today</p>
-
-    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= @components_by_subscribed %> created by paid user today</p>
+    <p class="text-gray-100 mt-3 h-24 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= number_to_currency(Subscription.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now, status: :active).count * 4.99) %> increase in MRR </p>
     
-    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= Subscription.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now, status: :active).count %> new subscriptions today</p>
-    
-    <p class="text-gray-100 mt-3 h-40 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= number_to_currency(Subscription.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now, status: :active).count * 4.99) %> increase in MRR </p>
+    <p class="text-gray-100 mt-3 h-24 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= Subscription.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now, status: :active).count %> new subscriptions today</p>
 
+    <p class="text-gray-100 mt-3 h-24 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= AiComponent.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).count %> components created today</p>
+
+    <p class="text-gray-100 mt-3 h-24 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= AiComponent.where(created_at: Time.zone.now.beginning_of_day..Time.zone.now).where.not(user_id: nil).count %> created by authed user today</p>
+
+    <p class="text-gray-100 mt-3 h-24 w-full bg-gray-500/75 text-xl flex items-center justify-center rounded-lg"> <%= @components_by_subscribed %> created by paid user today</p>
+    
   </div>
   
   <div id="actions" class="max-w-5xl w-full mx-auto mt-8 grid grid-cols-4 gap-8">

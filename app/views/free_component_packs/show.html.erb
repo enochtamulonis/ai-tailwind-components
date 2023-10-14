@@ -1,6 +1,5 @@
-<% content_for :meta_description do %>
-  <%= @component_pack.description %>
-<% end %>
+<% @page_title = [@component_pack.name, "Components"].compact.join(" ") %>
+<% @meta_description = @component_pack.description %>
 
 <%= turbo_stream_from @component_pack %>
 <div class="max-w-5xl w-full mx-auto mt-8">

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) || Seo::Title %></title>
     <link rel="icon" type="image/png" href="<%= asset_path("brain.svg") %>">
-    <meta name="description" content="<%= Seo::Description %>">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title><%= Seo::Title %> <%= "| #{@page_title}" if @page_title.present? %></title>
+    <meta name="description" content="<%= @meta_description || Seo::Description %>">
     <meta name="stripe-public-key" content="<%= Rails.application.credentials.dig(:stripe, :publishable_key) %>">
     <meta property="og:title" content="<%= Seo::Title %>">
     <meta property="og:description" content="AI Generated Tailwindcss Components. Instantly create beautiful UI with Tailwind Genius">

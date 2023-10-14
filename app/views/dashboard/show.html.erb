@@ -28,18 +28,18 @@
     </div>
 
     <% if @component_packs.any? %>
-      <div class="max-w-5xl w-full mx-auto mt-32">
-        <p class="text-2xl text-gray-200"> Browse Free Collection </p>
-        <div class="grid grid-cols-3 gap-4 mt-4">
+      <div class="max-w-7xl w-full mx-auto mt-40 pb-16">
+        <p class="text-2xl text-gray-200"> Free component packs </p>
+        <div class="grid md:grid-cols-3 gap-4 mt-4">
           <% @component_packs.each do |component_pack| %>
             <%= link_to free_component_pack_path(component_pack) do %>
-              <div class="flex flex-col">
-                <div class="bg-gray-200 rounded-lg w-full h-64 overflow-hidden"> 
+              <div class="flex flex-col group">
+                <p class="text-2xl text-gray-200 mt-2 group-hover:text-gray-300 transition-all duration-250 mb-4"> <%= component_pack.name %> </p>
+                <div class="bg-gray-200 rounded-lg w-full h-64 overflow-hidden group-hover:brightness-75 transition-all duration-250"> 
                   <% if component_pack.image.attached? %>
-                      <%= image_tag component_pack.image, class: "h-full object-cover" %>
+                      <%= image_tag component_pack.image, class: "h-full w-full object-cover" %>
                   <% end %>
                 </div>
-                <p class="text-2xl text-gray-200 mt-2"> <%= component_pack.name %> </p>
               </div>
             <% end %>
           <% end %>

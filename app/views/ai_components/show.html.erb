@@ -1,15 +1,15 @@
 <%= turbo_stream_from @ai_component %>
-<div class="grid h-full w-full p-8">
+<div class="flex flex-col h-full w-full md:p-8 relative">
   <% if current_user&.admin? %>
-    <div class="flex justify-end">
+    <div class="flex justify-end mb-4 absolute top-0 right-0">
       <%= link_to "Destroy", ai_component_path(@ai_component), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This is permanent"}, class: "bg-red-500 text-red-50 p-2 rounded-lg" %>
     </div>
   <% end %>
-  <div class="h-[50vh] bg-gray-300 flex justify-center items-center overflow-auto" id="<%= dom_id(@ai_component) %>">
+  <div class="h-[50vh] w-full bg-gray-500 md:bg-gray-300 flex justify-center items-center overflow-auto" id="<%= dom_id(@ai_component) %>">
     <%== @ai_component.html_content rescue "There was an error in code" %>
   </div>
 
-  <div class="max-w-7xl w-full mx-auto mt-8 mb-4">
+  <div class="max-w-7xl w-full mx-auto mt-4 md:mt-8 mb-4">
     <div class="relative max-w-2xl w-full">
       <% if current_user && (current_user&.active_subscription&.present? || (!current_user&.active_subscription && @ai_component.free_additions.positive?)) %>
         <% if @ai_component.component_pack.present? %>
