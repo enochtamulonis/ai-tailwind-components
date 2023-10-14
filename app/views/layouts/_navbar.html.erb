@@ -8,6 +8,14 @@
         <div class="hidden md:flex"> CSS Genius </div>
       </div>
     <% end %>
+
+    <%# Add the services links here %>
+
+    <div class="max-w-md w-full mx-auto flex gap-4">
+      <%= link_to "Email Genius", "#", class: "text-lg text-gray-300 hover:bg-gray-500 p-2 rounded-full transition-all duration-250" %>
+      <%= link_to "SEO Genius", tailwind_emails_path, class: "text-lg text-gray-300 hover:bg-gray-500 p-2 rounded-full transition-all duration-250" %>
+    </div>
+
     <% if current_user %>
       <div class="ml-auto relative" data-controller="dropdown" data-action="click@window->dropdown#closeUnlessDropdown">
         <%= link_to "#", data: { action: "dropdown#toggle" } do %>

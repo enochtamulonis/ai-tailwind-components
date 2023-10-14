@@ -37,7 +37,8 @@ Rails.application.routes.draw do
   end
   resources :free_component_packs, only: [:show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  resources :tailwind_emails, only: [:index]
+  resources :seo_pages, only: [:index]
   # Defines the root path route ("/")
   root "dashboard#show"
 end
