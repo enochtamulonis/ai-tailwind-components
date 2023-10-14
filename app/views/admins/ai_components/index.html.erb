@@ -1,0 +1,8 @@
+<h1 class="text-4xl text-gray-900 text-center mt-8"> All Ai Components </h1>
+
+<% @ai_components.each do |ai_component| %>
+  <%= render "ai_components/ai_component", ai_component: ai_component %>
+  <div class="mt-4">
+    <%= link_to "View component", ai_component, class: "bg-gray-500 text-gray-100 p-2 rounded-lg" %>
+  </div>
+<% end %>
