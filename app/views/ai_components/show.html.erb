@@ -1,4 +1,9 @@
 <%= turbo_stream_from @ai_component %>
+<% if !current_user %>
+  <div data-controller="sign-in-modal">
+
+  </div>
+<% end %>
 <div class="flex flex-col h-full w-full md:p-8 relative">
   <% if current_user&.admin? %>
     <div class="flex justify-end mb-4 absolute top-0 right-0">

@@ -4,9 +4,7 @@
     <%= turbo_frame_tag :code do %>
       <div class="flex justify-between w-full" data-controller="highlight">
         <div class="flex items-center">
-          <% if !user %>
-            <p class="text-gray-900"> Sign in to edit code </p>
-          <% else %>
+          <% if user %>
             <% if user.active_subscription %>
               <% if ai_component.component_pack.present? %>
                 <% if user.admin? %>

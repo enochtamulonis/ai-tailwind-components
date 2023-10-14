@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     resources :ai_components, only: [:index, :show]
   end
   resources :free_component_packs, only: [:show]
+  resource :sign_in_modal, only: [:create], controller: 'sign_in_modal'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

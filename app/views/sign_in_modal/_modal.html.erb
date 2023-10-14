@@ -1,0 +1,14 @@
+<div class="w-full h-screen fixed top-0 flex justify-center" data-controller="modal">
+  <div class="w-full h-full bg-gray-700/75"></div>
+
+  <div class="fixed top-40 max-w-4xl h-[50vh] bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg p-3" data-modal-target="modal" data-action="click@window->modal#closeIfNotModal">
+    <div class="h-full flex flex-col items-center justify-center px-8">
+      <p class="text-lg text-gray-200 text-center"> Please create an account to continue using Tailwind Genius </p>
+      <p class="max-w-md mx-auto text-lg text-gray-300 text-center mt-4"> We offer a <span class="text-indigo-200 font-semibold"> free </span> version and a paid membership <span class="text-green-500 font-semibold">$4.99</span>/<span class="text-yellow-500 font-semibold">monthly</span>  </p>
+      <div class="flex justify-between items-center mt-4">
+        <%= link_to "Sign in", new_user_session_path, class: "text-xl text-gray-100" %>
+        <%= link_to "Create account", new_user_registration_path, class: "text-xl text-gray-100 bg-gray-500 p-2 rounded-lg ml-4" %>
+    </div>
+  </div>
+
+</div>
