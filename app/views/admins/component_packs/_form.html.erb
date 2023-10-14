@@ -16,7 +16,7 @@
 
   <div class="flex flex-col p-2 mb-4">
     <%= f.label :container_css %>
-    <%= f.text_area :container_css %>
+    <%= f.select :container_css, options_for_select(["md:grid-cols-1", "md:grid-cols-2", "md:grid-cols-3", "md:grid-cols-4"]) %>
   </div>
 
   <%= f.submit class: "text-indigo-100 bg-indigo-500 rounded-lg p-2 cursor-pointer" %>
