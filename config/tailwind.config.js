@@ -22,9 +22,9 @@ module.exports = {
     require('@tailwindcss/container-queries'),
   ],
   // Enable when deploy to prod.
-  safelist: [
-    {
-      pattern: /./, // the "." means "everything",
-    },
-  ],
+  // safelist: [
+  //   {
+  //     pattern: /./, // the "." means "everything",
+  //   },
+  // ],
 }
