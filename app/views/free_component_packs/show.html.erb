@@ -18,7 +18,7 @@
       <% end %>
   </div>
   
-  <div class="grid gap-8 mt-8 <%= @component_pack.container_css %>">
+  <div class="grid gap-x-8 gap-y-16 mt-8 <%= @component_pack.container_css %>">
     <% @component_pack.ai_components.order(created_at: :desc).each do |ai_component| %>
       <div>
         <%== ai_component.html_content %>
