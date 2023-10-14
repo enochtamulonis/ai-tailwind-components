@@ -1,32 +1,30 @@
-<div class="<%= "grid lg:grid-cols-2" if params[:more_info] == "true" %>">
-  <% if params[:more_info] == "true" %>
-  <div class="hidden lg:flex relative justify-center">
-      <%= image_tag "ai-brain.jpg", class: "w-full h-[100vh] object-cover" %>
-      <div class="absolute top-32 w-3/4 h-96 bg-gray-700/75 backdrop-blur pt-16">
-          <p class="text-lg text-gray-200 text-center"> Please create an account to continue using Tailwind Genius </p>
-          <p class="max-w-md mx-auto text-lg text-gray-300 text-center mt-4"> We offer a <span class="text-indigo-500 font-semibold"> free </span> version and a paid membership <span class="text-green-500 font-semibold">$4.99</span>/<span class="text-yellow-500 font-semibold">monthly</span>  </p>
-          <div class="mt-8 grid grid-cols-3 gap-4 px-4">
-              <div class="text-lg text-center text-gray-100 flex flex-col items-center"> 
-              <span> Get access to unlimited components </span> 
-              🥳
-              </div>
-              <div class="text-lg text-center text-gray-100 flex flex-col items-center"> 
-              <span> Propel your development </span> 
-              🚀
-              </div>
-              <div class="text-lg text-center text-gray-100 flex flex-col items-center"> 
-              <span> Get creative with your designs </span>  
-              🎨 
-              </div>
-          </div>
-      </div>
+<div class="grid lg:grid-cols-2 bg-gray-700">
+  <div class="flex relative justify-center">
+    <%= image_tag "ai-brain.jpg", class: "w-full h-[50vh] md:h-[100vh] object-cover" %>
+    <div class="absolute top-32 w-3/4 h-96 bg-gray-700/75 backdrop-blur pt-16">
+        <p class="text-lg text-gray-200 text-center"> Please create an account to continue using Tailwind Genius </p>
+        <p class="max-w-md mx-auto text-lg text-gray-300 text-center mt-4"> We offer a <span class="text-indigo-500 font-semibold"> free </span> version and a paid membership <span class="text-green-500 font-semibold">$4.99</span>/<span class="text-yellow-500 font-semibold">monthly</span>  </p>
+        <div class="mt-8 grid grid-cols-3 gap-4 px-4">
+            <div class="text-lg text-center text-gray-100 flex flex-col items-center"> 
+            <span> Get access to unlimited components </span> 
+            🥳
+            </div>
+            <div class="text-lg text-center text-gray-100 flex flex-col items-center"> 
+            <span> Propel your development </span> 
+            🚀
+            </div>
+            <div class="text-lg text-center text-gray-100 flex flex-col items-center"> 
+            <span> Get creative with your designs </span>  
+            🎨 
+            </div>
+        </div>
+    </div>
   </div>
-  <% end %>
   <%= turbo_frame_tag :auth do %>
     <div class="w-full max-w-2xl mx-auto mt-16">
-        <h1 class="font-hairline mb-6 text-center text-gray-800 text-lg">Log In</h1>
+        <h1 class="font-hairline mb-6 text-2xl text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-pink-500 font-semibold text-center">Log In</h1>
 
-        <div class="lg:bg-gray-300/75 mb-4 px-8 pt-6 pb-8 rounded-lg shadow-md">
+        <div class="lg:bg-gradient-to-r from-indigo-500 to-purple-500 mb-4 px-8 pt-6 pb-8 rounded-lg shadow-lg">
             <%= form_for(resource,
                         as: resource_name,
                         url: session_path(resource_name),
@@ -46,14 +44,14 @@
                 <% end %>
 
                 <div class="mb-4">
-                    <%= f.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+                    <%= f.label :email, class: "block text-gray-200 text-sm font-bold mb-2" %>
                     <%= f.email_field :email, autofocus: true, autocomplete: "email",
                                     class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight foucs:outline-none focus:shadow-outline"
                     %>
                 </div>
 
                 <div class="mb-4">
-                    <%= f.label :password, class: "block text-gray-700 text-sm font-bold mb-2" %>
+                    <%= f.label :password, class: "block text-gray-200 text-sm font-bold mb-2" %>
                     <%= f.password_field :password,
                                         autocomplete: "current-password",
                                         class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -64,14 +62,14 @@
                     <div class="mb-4">
                         <%= f.check_box :remember_me, class: "mr-2 leading-tight" %>
                         <%= f.label :remember_me,
-                                    class: "align-baseline inline-block text-gray-700 text-sm"
+                                    class: "align-baseline inline-block text-gray-100 text-sm"
                         %>
                     </div>
                 <% end %>
 
                 <div class="mb-4">
                     <%= f.submit "Log in",
-                                class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full cursor-pointer"
+                                class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full cursor-pointer transition-all duration-250"
                     %>
                 </div>
 

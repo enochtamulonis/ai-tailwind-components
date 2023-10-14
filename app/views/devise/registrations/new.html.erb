@@ -1,8 +1,8 @@
 <div class="">
   <%= turbo_frame_tag :auth do %>
     <div class="w-full max-w-2xl mx-auto mt-16">
-        <h1 class="font-hairline mb-6 text-center text-lg">Create an account</h1>
-        <div class="bg-gray-300 mb-4 px-8 pt-6 pb-8 rounded shadow-md">
+        <h1 class="font-hairline mb-6 text-center text-2xl bg-clip-text text-transparent bg-gradient-to-t from-indigo-500 to-blue-500">Create an account</h1>
+        <div class="lg:bg-gradient-to-r from-indigo-500 to-blue-500 mb-4 px-8 pt-6 pb-8 rounded shadow-md">
             <%= form_for(resource,
                         as: resource_name,
                         url: registration_path(resource_name),
@@ -12,7 +12,7 @@
                 <%= devise_error_messages! %>
 
                 <div class="mb-4">
-                    <%= f.label :email, class: "block font-bold mb-2 text-gray-700 text-sm" %>
+                    <%= f.label :email, class: "block font-bold text-gray-100 text-sm" %>
                     <%= f.email_field :email,
                                     autocomplete: "email",
                                     placeholder: "user@example.com",
@@ -20,9 +20,9 @@
                 </div>
 
                 <div class="mb-4">
-                    <%= f.label :password, class: "block font-bold mb-2 text-gray-700 text-sm" %>
+                    <%= f.label :password, class: "block font-bold text-gray-100 text-sm" %>
                     <% if @minimum_password_length %>
-                        <small><em class="text-gray-600">(<%= @minimum_password_length %> characters minimum)</em></small>
+                        <small><em class="text-gray-100">(<%= @minimum_password_length %> characters minimum)</em></small>
                     <% end %>
                     <%= f.password_field :password,
                                         autocomplete: "new-password",
@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="mb-4">
-                    <%= f.label :password_confirmation, class: "block font-bold mb-2 text-gray-700 text-sm" %>
+                    <%= f.label :password_confirmation, class: "block font-bold mb-2 text-gray-100 text-sm" %>
                     <%= f.password_field :password_confirmation,
                                         autocomplete: "new-password",
                                         class: "appearance-none border leading-tight focus:outline-none px-3 py-2 rounded shadow focus:shadow-outline text-gray-700 w-full"
