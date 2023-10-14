@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       end
     end
     resources :emails, only: [:new, :create, :index]
+    resources :ai_components, only: [:index, :show]
   end
   resources :free_component_packs, only: [:show]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

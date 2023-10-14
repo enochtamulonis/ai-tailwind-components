@@ -1,7 +1,7 @@
 <div id="<%= dom_id ai_component %>">
   <p class="my-5">
     <strong class="block font-medium mb-1">HTML</strong>
-    <%= ai_component.html_content.first(100) %>...
+    <%= ai_component.html_content&.first(100) %>...
   </p>
 
   <p class="my-5">
