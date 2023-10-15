@@ -22,6 +22,8 @@ class AiComponentsController < ApplicationController
     else
       session[:guest_ai_component_id] = @ai_component.id
       session["user_return_to"] = request.original_url
+      cookies["user_return_to"] = request.original_url
+      cookies[:guest_ai_component_id] = @ai_component.id
     end
   end
 

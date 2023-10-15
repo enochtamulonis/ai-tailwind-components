@@ -3,11 +3,18 @@
 
   <div class="fixed top-40 max-w-4xl h-[50vh] bg-gradient-to-r from-indigo-500 to-pink-500 rounded-lg p-3" data-modal-target="modal" data-action="click@window->modal#closeIfNotModal">
     <div class="h-full flex flex-col items-center justify-center px-8">
-      <p class="text-lg text-gray-200 text-center"> Please create an account to continue using Tailwind Genius </p>
+      <p class="text-lg text-gray-200 text-center"> Please create an account to save your component and continue using Tailwind Genius </p>
       <p class="max-w-md mx-auto text-lg text-gray-300 text-center mt-4"> We offer a <span class="text-indigo-200 font-semibold"> free </span> version and a paid membership <span class="text-green-500 font-semibold">$4.99</span>/<span class="text-yellow-500 font-semibold">monthly</span>  </p>
-      <div class="flex justify-between items-center mt-4">
-        <%= link_to "Sign in", new_user_session_path, class: "text-xl text-gray-100" %>
-        <%= link_to "Create account", new_user_registration_path, class: "text-xl text-gray-100 bg-gray-500 p-2 rounded-lg ml-4" %>
+      <div class="mt-8 max-w-sm w-full mx-auto flex flex-col gap-4">
+        <%= link_to "Log in", new_user_session_path, class: "text-xl text-gray-100 w-full p-2 rounded-lg bg-gray-700 hover:bg-gray-400 text-center" %>
+        <%- User.omniauth_providers.each do |provider| %>
+          <%= button_to "Log in with #{omniauth_name(OmniAuth::Utils.camelize(provider))}", omniauth_authorize_path("user", provider),
+                      class: "bg-gray-700 hover:bg-gray-400 text-xl text-white hover:text-gray-200 p-2 rounded-lg focus:outline-none focus:shadow-outline w-full",
+                      method: :post, data: { turbo: false }
+          %>
+        <% end %>
+        <%= link_to "Create account", new_user_registration_path, class: "text-xl text-gray-100 text-center bg-gray-700 hover:bg-gray-400 p-2 rounded-lg w-full" %>
+      </div>
     </div>
   </div>
 
