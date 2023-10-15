@@ -16,7 +16,8 @@ class AiComponentsController < ApplicationController
     end
     if current_user && !@ai_component.component_pack.present?
       if session[:guest_ai_component_id].present? && session[:guest_ai_component_id] == @ai_component.id
-        @ai_component.update(user: current_user, daily_trys: current_user.daily_trys - 1)
+        current_user.update(daily_trys: current_user.daily_trys - 1)
+        @ai_component.update(user: current_user)
       end
     else
       session[:guest_ai_component_id] = @ai_component.id
