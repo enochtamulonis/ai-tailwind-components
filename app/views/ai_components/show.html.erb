@@ -40,7 +40,7 @@
             <% end %>
             <%= form_with url: ai_component_additions_path(@ai_component), model: AiComponent.new do |f| %>
               <div class="relative">
-                <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted", autofocus: true %>
+                <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer pr-24", placeholder: "Enter in any modifications wanted", autofocus: true %>
                 <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
                   <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
                     <div class="w-8">
@@ -65,7 +65,7 @@
         </div>
         <%= form_with url: ai_component_additions_path(@ai_component), model: AiComponent.new do |f| %>
           <div class="flex w-full relative">
-            <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer", placeholder: "Enter in any modifications wanted", autofocus: true, disabled: true %>
+            <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer pr-24", placeholder: "Enter in any modifications wanted", autofocus: true, disabled: true %>
             <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
               <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center", disabled: true do %>
                 <div class="w-8">
