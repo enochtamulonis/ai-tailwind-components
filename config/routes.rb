@@ -17,6 +17,11 @@ Rails.application.routes.draw do
   namespace :users do
     resource :deactivate, only: [:show], controller: :deactivate
   end
+  resources :users do
+    scope module: :users do
+      resource :unsubscribe_email, only: [:create, :show], controller: "unsubscribe_email"
+    end
+  end
   resource :dashboard, only: [:show], controller: :show
   post "/webhook_events/:source", to: "webhook_events#create"
   get "/admin", to: "admins#index"

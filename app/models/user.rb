@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :ai_components
   has_many :user_roles
   has_one :subscription
+  has_secure_token :email_token
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|

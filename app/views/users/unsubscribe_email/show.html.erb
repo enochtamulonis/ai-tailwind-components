@@ -1,0 +1,8 @@
+<div class="max-w-2xl w-full mx-auto mt-16 rounded-lg shadow-lg">
+  <% if @user.recieve_email_notifications? %>
+    <p class="text-gray-900 text-xl"> Unsubscribe from email notifications </p>
+    <%= link_to "Unsubscribe me", user_unsubscribe_email_url(@user), data: { turbo_method: :post } %>
+  <% else %>
+    <p class="text-gray-900 text-xl"> You have been unsubscribed from email notifications </p>
+  <% end %>
+</div>
