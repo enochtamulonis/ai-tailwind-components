@@ -12,7 +12,7 @@ module Purchase
       end
 
       payment_intent = Stripe::PaymentIntent.create({
-        amount: 499,
+        amount: 4999,
         currency: 'usd',
         automatic_payment_methods: {enabled: true},
         customer: current_user.customer_id,
