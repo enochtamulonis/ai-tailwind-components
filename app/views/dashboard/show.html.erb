@@ -89,13 +89,13 @@
           <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
           <p class="text-3xl text-center text-pink-50"> Free </p>
 
-          <p class="text-xl mt-4 text-center text-pink-50"> Get access to unlimited usage and components for 
-            <span class="text-xl text-pink-300"> $49.99 </span> one time purchase
+          <p class="text-xl mt-4 text-center text-pink-50"> Get up to 5 daily trys and 5 additions per component with a 
+            <span class="text-xl text-pink-300"> free </span> account
           </p>
 
           <div class="flex justify-center mt-4">
             <% if !current_user %>
-              <%= link_to "Create Account Now", new_user_session_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+              <%= link_to "Sign up Now", new_user_session_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
             <% elsif !current_user.paid_account? %>
               <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
             <% end %>
