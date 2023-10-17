@@ -7,7 +7,7 @@
 
   <div class="relative max-w-2xl w-full mx-auto mt-10 flex flex-col" id="ai-component-form">
       <%= form_with url: ai_components_path(component_pack_id: @component_pack.id), model: AiComponent.new do |f| %>
-        <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer pr-24", placeholder: "Create a new component" %>
+        <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer pr-24", placeholder: "Create a new component", required: true %>
         <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
           <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
             <div class="w-8">
