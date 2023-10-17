@@ -5,7 +5,7 @@ export default class extends Controller {
   connect() {
     this.timeout = setTimeout(async () => {
       await post("/sign_in_modal")
-    }, 500) 
+    }, 7500) 
   }
   disconnect() {
     if (this.timeout) {
