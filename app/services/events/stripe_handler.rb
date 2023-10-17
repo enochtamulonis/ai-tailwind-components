@@ -23,9 +23,6 @@ module Events
       when 'customer.subscription.deleted'
         # Do something when deleted
       when 'payment_intent.succeeded'
-        if stripe_event.data.object.description.include?("Subscription")
-          return
-        end
         if Rails.env.production?
           sleep 3.5
         end
