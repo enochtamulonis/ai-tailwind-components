@@ -14,6 +14,13 @@ Rails.application.routes.draw do
     resource :success, only: [:show], controller: "success"
     resource :cancel, only: [:create], controller: "cancel"
   end
+  resource :purchase, only: [:new], controller: :purchase
+
+  namespace :purchase do
+    resource :payment_intent, only: [:create], controller: 'payment_intent'
+    resource :success, only: [:show], controller: "success"
+  end
+
   namespace :users do
     resource :deactivate, only: [:show], controller: :deactivate
   end

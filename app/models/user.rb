@@ -49,6 +49,10 @@ class User < ApplicationRecord
   def google_authed?
     uid.present? && provider == "google_oauth2"
   end
+
+  def paid_account?
+    active_subscription.present? || purchased_lifetime_membership?
+  end
   # User roles
 
   def admin?

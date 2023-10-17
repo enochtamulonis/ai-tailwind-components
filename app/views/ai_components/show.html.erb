@@ -16,7 +16,7 @@
 
   <div class="max-w-7xl w-full mx-auto mt-4 md:mt-8 mb-4">
     <div class="relative max-w-2xl w-full">
-      <% if current_user && (current_user&.active_subscription&.present? || (!current_user&.active_subscription && @ai_component.free_additions.positive?)) %>
+      <% if current_user && (current_user&.paid_account? || (!current_user&.paid_account? && @ai_component.free_additions.positive?)) %>
         <% if @ai_component.component_pack.present? %>
           <%= form_with url: ai_component_additions_path(@ai_component), model: AiComponent.new do |f| %>
             <div class="relative">
@@ -32,7 +32,7 @@
           <% end %>
         <% else %>
           <%= turbo_frame_tag :ai_prompt do %>
-            <% if !current_user.active_subscription %>
+            <% if !current_user.paid_account? %>
               <div class="flex items-center mb-4">
                 <span class="ml-2"> You have <%= @ai_component.free_additions %> free additions </span>
                 <%= link_to "Upgrade for unlimited", new_subscription_path, class: "text-indigo-500 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 ml-2", data: { turbo_frame: "_top" } %> 

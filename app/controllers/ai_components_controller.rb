@@ -31,7 +31,7 @@ class AiComponentsController < ApplicationController
   # POST /ai_components or /ai_components.json
   def create
     if current_user
-      if !current_user.active_subscription
+      if !current_user.paid_account?
         if current_user.daily_trys == 0
           return redirect_to new_subscription_path, alert: "Purchase a membership to create unlimited components"
         end

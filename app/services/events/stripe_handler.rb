@@ -22,6 +22,18 @@ module Events
       # Inform the user of failed payment
       when 'customer.subscription.deleted'
         # Do something when deleted
+      when 'payment_intent.succeeded'
+        if stripe_event.data.object.description.include?("Subscription")
+          return
+        end
+        if Rails.env.production?
+          sleep 3.5
+        end
+        metadata = stripe_event.data.object.metadata
+        user = User.find(metadata.user_id)
+        user.update(purchased_lifetime_membership: true)
+        WelcomeMailer.send_welcome_email(user).deliver_later
+        user.broadcast_replace_to(user, partial: "purchase/success/success", target: ActionView::RecordIdentifier.dom_id(user, :success))
       end
     end
   end

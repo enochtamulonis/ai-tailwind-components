@@ -3,7 +3,7 @@ class AiComponents::AdditionsController < ApplicationController
 
   def create
     if current_user
-      if !current_user.active_subscription
+      if !current_user.paid_account?
         if @ai_component.free_additions == 0
           return redirect_to new_subscription_path, alert: "Purchase a membership for unlimited additions and components"
         end
@@ -18,7 +18,7 @@ class AiComponents::AdditionsController < ApplicationController
       @ai_component.component_pack_id = nil
       @ai_component.save
       user = current_user
-      if !current_user.active_subscription
+      if !current_user.paid_account?
         if current_user.daily_trys == 0
           redirect_to new_subscription_path, alert: "To create any more components today you must purchase a membership"
         end

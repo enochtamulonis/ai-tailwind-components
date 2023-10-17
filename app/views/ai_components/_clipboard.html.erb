@@ -5,7 +5,7 @@
       <div class="flex justify-between w-full" data-controller="highlight">
         <div class="flex items-center">
           <% if user %>
-            <% if user.active_subscription %>
+            <% if user.paid_account? %>
               <% if ai_component.component_pack.present? %>
                 <% if user.admin? %>
                     <a href="<%= new_ai_component_edit_code_path(ai_component) %>" class="text-gray-900"> edit code </a>

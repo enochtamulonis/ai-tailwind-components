@@ -1,0 +1,10 @@
+<%= turbo_stream_from current_user %>
+
+<div id="success" class="max-w-5xl w-full mx-auto mt-24">
+  <% if current_user.purchased_lifetime_membership? %>
+    <%= render "success", user: current_user %>
+  <% else %>
+    <p class="text-2xl text-gray-900"> Please wait a few seconds for us to confirm your payment </p>
+    <p class="text-xl text-gray-700"> If the page takes longer than 5 seconds please refresh </p>
+  <% end %>
+</div>
