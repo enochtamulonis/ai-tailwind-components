@@ -1,1 +1,7 @@
 <%== @body %>
+
+<% if @user %>
+  <div style="text-align: center; margin: 20px;">
+    <a href="<%= users_unsubscribe_email_url(@user.email_token) %>" style="display: inline-block; padding: 10px 20px; background-color: #ff6347; color: #fff; text-decoration: none; border-radius: 5px; font-family: Arial, sans-serif; font-size: 16px;">Unsubscribe</a>
+  </div>
+<% end %>
