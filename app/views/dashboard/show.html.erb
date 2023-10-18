@@ -1,6 +1,6 @@
 <%= turbo_stream_from @guest_token %>
 
-<div class="bg-gradient-to-r from-indigo-500 to-purple-500 min-h-[100vh] pt-36 px-4 md:px-0">
+<div class="bg-gradient-to-r from-indigo-500 to-purple-500 min-h-[100vh] pt-36 px-4">
   <div id="<%= @guest_token %>-container" class="w-full">
     <h1 class="font-bold text-6xl md:text-7xl text-gray-100 text-center mx-auto">CSS Genius</h1>
     <p class="text-xl text-indigo-100 mb-6 text-center max-w-xs md:max-w-lg w-full mx-auto text-center mt-2">AI Generated UI Components for Tailwind CSS</p>
@@ -48,62 +48,64 @@
         </div>
       </div>
     <% end %>
-  </div>
+    <% if !current_user || !current_user&.paid_account? %>
+      <div class="max-w-7xl w-full mx-auto pb-36">
+        <h3 class="text-2xl text-gray-100"> We offer transparent pricing at a great value <h3>
+        <div class="grid md:grid-cols-2 gap-8 mt-8 ">
+          <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center">
+            <p class="text-3xl text-center text-pink-50"> Monthly </p>
 
-  <% if !current_user || !current_user&.paid_account? %>
-    <div class="max-w-7xl w-full mx-auto pb-36">
-      <h3 class="text-2xl text-gray-100"> We offer transparent pricing at a great value <h3>
-      <div class="grid md:grid-cols-2 gap-8 mt-8 ">
-        <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center">
-          <p class="text-3xl text-center text-pink-50"> Monthly </p>
+            <p class="text-xl mt-4 text-center text-pink-50"> Get access to unlimited usage and components for 
+              <span class="text-xl text-pink-300"> $4.99 </span> a month
+            </p>
 
-          <p class="text-xl mt-4 text-center text-pink-50"> Get access to unlimited usage and components for 
-            <span class="text-xl text-pink-300"> $4.99 </span> a month
-          </p>
-
-          <div class="flex justify-center mt-4">
-            <% if current_user&.active_subscription %>
-              <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
-            <% else %>
-              <%= link_to "Subscribe Now", new_subscription_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
-            <% end %>
+            <div class="flex justify-center mt-4">
+              <% if current_user&.active_subscription %>
+                <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+              <% else %>
+                <%= link_to "Subscribe Now", new_subscription_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+              <% end %>
+            </div>
           </div>
-        </div>
 
-        <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center relative" id="pricing">
-          <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
-          <p class="text-3xl text-center text-pink-50"> Pay Once </p>
+          <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center relative" id="pricing">
+            <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
+            <p class="text-3xl text-center text-pink-50"> Pay Once </p>
 
-          <p class="text-xl mt-4 text-center text-pink-50"> Get access to unlimited usage and components for 
-            <span class="text-xl text-pink-300"> $49.99 </span> one time purchase
-          </p>
+            <p class="text-xl mt-4 text-center text-pink-50"> Get access to unlimited usage and components for 
+              <span class="text-xl text-pink-300"> $49.99 </span> one time purchase
+            </p>
 
-          <div class="flex justify-center mt-4">
-            <% if current_user&.purchased_lifetime_membership? %>
-              <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
-            <% else %>
-              <%= link_to "Purchase Now", new_purchase_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
-            <% end %>
+            <div class="flex justify-center mt-4">
+              <% if current_user&.purchased_lifetime_membership? %>
+                <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+              <% else %>
+                <%= link_to "Purchase Now", new_purchase_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+              <% end %>
+            </div>
           </div>
-        </div>
 
-        <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center relative">
-          <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
-          <p class="text-3xl text-center text-pink-50"> Free </p>
+          <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center relative">
+            <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
+            <p class="text-3xl text-center text-pink-50"> Free </p>
 
-          <p class="text-xl mt-4 text-center text-pink-50"> Get up to 5 trys and 5 additions per component with a 
-            <span class="text-xl text-pink-300"> free </span> account
-          </p>
+            <p class="text-xl mt-4 text-center text-pink-50"> Get up to 5 trys and 5 additions per component with a 
+              <span class="text-xl text-pink-300"> free </span> account
+            </p>
 
-          <div class="flex justify-center mt-4">
-            <% if !current_user %>
-              <%= link_to "Sign up Now", new_user_session_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
-            <% elsif !current_user.paid_account? %>
-              <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
-            <% end %>
+            <div class="flex justify-center mt-4">
+              <% if !current_user %>
+                <%= link_to "Sign up Now", new_user_session_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+              <% elsif !current_user.paid_account? %>
+                <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+
+
+  </div>
+
 </div>
