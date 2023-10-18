@@ -56,7 +56,7 @@
         <div class="flex items-center mb-4">
           <% if current_user %>
             <span class="mr-2"> 0 free additions left </span>
-            <%= link_to "Upgrade Membership", new_subscription_path, class: "text-indigo-500 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100", data: { turbo_frame: "_top" } %> 
+              <%= link_to "Upgrade Membership", new_subscription_path, class: "text-indigo-500 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100", data: { turbo_frame: "_top" } %> 
             <span class="ml-2"> to get unlimited </span>
           <% else %>
             <%= link_to "Create an account", new_user_session_path, class: "text-indigo-500 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100", data: { turbo_frame: "_top" } %> 

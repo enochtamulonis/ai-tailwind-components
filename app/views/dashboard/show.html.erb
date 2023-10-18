@@ -2,8 +2,8 @@
 
 <div class="bg-gradient-to-r from-indigo-500 to-purple-500 min-h-[100vh] pt-36 px-4 md:px-0">
   <div id="<%= @guest_token %>-container" class="w-full">
-    <h1 class="font-bold text-6xl md:text-7xl text-gray-100 text-center">CSS Genius</h1>
-    <p class="text-xl text-gray-100 mb-6 text-center">AI generated custom UI components for Tailwind CSS </p>
+    <h1 class="font-bold text-6xl md:text-7xl text-gray-100 text-center mx-auto">CSS Genius</h1>
+    <p class="text-xl text-indigo-100 mb-6 text-center max-w-xs md:max-w-lg w-full mx-auto text-center mt-2">AI Generated UI Components for Tailwind CSS</p>
     
     <div class="max-w-2xl w-full mx-auto">
       <%= form_with url: "/ai_components?uniq_id=#{@guest_token}", model: AiComponent.new do |f| %>
@@ -20,9 +20,11 @@
       <% end %>
       <div class="flex items-center justify-center w-full mx-auto mt-4">
         <% if current_user && !current_user.paid_account? %>
-          <span class="mr-2 text-gray-100"> <%= current_user.daily_trys %> free components for the day </span>
-            <%= link_to "Upgrade Membership", new_subscription_path, class: "text-indigo-200 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 font-semibold" %> 
+          <span class="mr-2 text-gray-100"> <%= current_user.daily_trys %> free components left </span>
+            <%= link_to "Upgrade Membership", "#pricing", class: "text-indigo-200 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 font-semibold" %> 
           <span class="ml-2 text-gray-100"> to get unlimited </span>
+        <% elsif !current_user %>
+          <%= link_to "View our pricing", "#pricing", class: "bg-indigo-500 text-indigo-100 px-2 py-1.5 rounded-full border-2 border-indigo-500 hover:bg-indigo-400 transition duration-250" %>
         <% end %>
       </div>
     </div>
@@ -68,7 +70,7 @@
           </div>
         </div>
 
-        <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center relative">
+        <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center relative" id="pricing">
           <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
           <p class="text-3xl text-center text-pink-50"> Pay Once </p>
 
@@ -89,7 +91,7 @@
           <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
           <p class="text-3xl text-center text-pink-50"> Free </p>
 
-          <p class="text-xl mt-4 text-center text-pink-50"> Get up to 5 daily trys and 5 additions per component with a 
+          <p class="text-xl mt-4 text-center text-pink-50"> Get up to 5 trys and 5 additions per component with a 
             <span class="text-xl text-pink-300"> free </span> account
           </p>
 

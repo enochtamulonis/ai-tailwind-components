@@ -14,7 +14,7 @@
                 <a href="<%= new_ai_component_edit_code_path(ai_component) %>" class="text-gray-900"> edit code </a>
               <% end %>
             <% else %>
-              <p class="text-gray-900"> Upgrade membership to edit code </p>
+              <a href="<%= root_path(anchor: "pricing") %>" target="_top" class="text-gray-900"> Upgrade membership to edit code </p>
             <% end %>
           <% end %>
         </div>

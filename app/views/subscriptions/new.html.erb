@@ -2,9 +2,13 @@
   <div class="grid lg:grid-cols-2">
     <div class="p-3 bg-gray-700 md:mt-32 max-w-lg mx-auto flex flex-col items-center justify-center p-3 h-[25rem] md:rounded-lg">
       <h1 class="text-3xl text-center text-indigo-200"> Upgrade your experience </h1>
-      <p class="text-xl text-indigo-100 text-center mt-2"> 
-        To continue building new features that will propel your productivity please enable your membership
+      <p class="text-lg text-indigo-100 text-center mt-2 max-w-md"> 
+        To continue using our tools and support us to create more features please enable your membership
         <span class="text-indigo-100"> <%= number_to_currency(4.99) %>/Monthly </span>
+      </p>
+      <p class="bg-indigo-500/75 text-indigo-100 text-center mt-2 max-w-md"> 
+        For a limited time we are selling life time memberships for $49.99. 
+        <%= link_to "Check it out here", new_purchase_path, class: "text-indigo-100 text-lg underline" %>
       </p>
     </div>
 

@@ -6,6 +6,10 @@
         To continue building new features that will propel your productivity we offer you with a one time payment lifetime membership
         <span class="text-indigo-100"> <%= number_to_currency(49.99) %> </span>
       </p>
+      <p class="bg-indigo-500/75 text-indigo-100 text-center mt-2 max-w-md"> 
+        If you would rather pay with a subscription 4.99/monthly
+        <%= link_to "Start subscription here", new_subscription_path, class: "text-indigo-100 text-lg underline" %>
+      </p>
     </div>
 
     <div class="md:mt-32">
