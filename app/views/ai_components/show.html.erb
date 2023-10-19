@@ -10,7 +10,7 @@
       <%= link_to "Destroy", ai_component_path(@ai_component), data: { turbo_method: :delete, turbo_confirm: "Are you sure? This is permanent"}, class: "bg-red-500 text-red-50 p-2 rounded-lg" %>
     </div>
   <% end %>
-  <div class="h-[50vh] w-full bg-gray-500 md:bg-gray-300 flex justify-center items-center overflow-auto" id="<%= dom_id(@ai_component) %>">
+  <div class="h-[60vh] w-full bg-gray-500 md:bg-gray-300 flex justify-center items-center overflow-auto" id="<%= dom_id(@ai_component) %>">
     <%== @ai_component.html_content rescue "There was an error in code" %>
   </div>
 

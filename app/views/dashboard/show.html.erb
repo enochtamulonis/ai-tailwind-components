@@ -1,9 +1,9 @@
 <%= turbo_stream_from @guest_token %>
 
-<div class="bg-gradient-to-r from-indigo-500 to-purple-500 min-h-[100vh] pt-36 px-4">
+<div class="bg-gradient-to-b from-indigo-700 to-purple-500 min-h-[100vh] pt-36 px-4">
   <div id="<%= @guest_token %>-container" class="w-full">
     <h1 class="font-bold text-6xl md:text-7xl text-gray-100 text-center mx-auto">CSS Genius</h1>
-    <p class="text-xl md:text-2xl text-indigo-100 mb-6 text-center max-w-xs md:max-w-2xl w-full mx-auto text-center mt-2">AI Generated UI Components for Tailwind CSS</p>
+    <p class="text-xl md:text-2xl text-indigo-100 mb-6 text-center max-w-xs lg:max-w-3xl w-full mx-auto text-center mt-2">AI Generated UI Components for Tailwind CSS</p>
     
     <div class="max-w-2xl w-full mx-auto">
       <%= form_with url: "/ai_components?uniq_id=#{@guest_token}", model: AiComponent.new do |f| %>
@@ -24,7 +24,7 @@
             <%= link_to "Upgrade Membership", "#pricing", class: "text-indigo-200 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 font-semibold text-xl" %> 
           <span class="ml-2 text-gray-100"> to get unlimited </span>
         <% elsif !current_user %>
-          <%= link_to "View our pricing", "#pricing", class: "bg-indigo-500 text-indigo-100 px-2 py-1.5 rounded-full border-2 border-indigo-500 hover:bg-indigo-400 transition duration-250 text-xl" %>
+          <%= link_to "View our pricing", "#pricing", class: "bg-indigo-500 text-indigo-100 px-2 py-1.5 rounded-full border-2 border-indigo-500 hover:bg-indigo-400 transition duration-250 text-lg" %>
         <% end %>
       </div>
     </div>
