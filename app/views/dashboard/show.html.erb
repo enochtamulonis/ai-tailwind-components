@@ -3,15 +3,15 @@
 <div class="bg-gradient-to-r from-indigo-500 to-purple-500 min-h-[100vh] pt-36 px-4">
   <div id="<%= @guest_token %>-container" class="w-full">
     <h1 class="font-bold text-6xl md:text-7xl text-gray-100 text-center mx-auto">CSS Genius</h1>
-    <p class="text-xl text-indigo-100 mb-6 text-center max-w-xs md:max-w-lg w-full mx-auto text-center mt-2">AI Generated UI Components for Tailwind CSS</p>
+    <p class="text-xl md:text-2xl text-indigo-100 mb-6 text-center max-w-xs md:max-w-lg w-full mx-auto text-center mt-2">AI Generated UI Components for Tailwind CSS</p>
     
     <div class="max-w-2xl w-full mx-auto">
       <%= form_with url: "/ai_components?uniq_id=#{@guest_token}", model: AiComponent.new do |f| %>
         <div class="relative">
-          <%= f.text_field :ai_prompt, class: "w-full rounded-full py-3 border-2 border-gray-300 outline-none peer pr-24", placeholder: "Create a new component", required: true %>
+          <%= f.text_field :ai_prompt, class: "text-xl w-full rounded-full py-3 border-2 border-gray-300 outline-none peer pr-24", placeholder: "Create a new component", required: true %>
           <div class="absolute right-0 top-0 bg-white h-full w-24 text-indigo-700 rounded-r-full border-r-2 border-gray-300 border-t-2 border-b-2 rounded-r-full peer-focus:ring-indigo-500 peer-focus:border-indigo-500 overflow-hidden">
             <%= button_to "Prompt", class: "w-full h-full flex items-center justify-center hover:bg-gray-300" do %>
-              <div class="w-8">
+              <div class="w-12">
                 <%= render Icons::CheckComponent.new %>
               </div>
             <% end %>
@@ -21,22 +21,22 @@
       <div class="flex items-center justify-center w-full mx-auto mt-4">
         <% if current_user && !current_user.paid_account? %>
           <span class="mr-2 text-gray-100"> <%= current_user.daily_trys %> free components left </span>
-            <%= link_to "Upgrade Membership", "#pricing", class: "text-indigo-200 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 font-semibold" %> 
+            <%= link_to "Upgrade Membership", "#pricing", class: "text-indigo-200 p-2 rounded-full hover:bg-indigo-500 hover:text-indigo-100 font-semibold text-xl" %> 
           <span class="ml-2 text-gray-100"> to get unlimited </span>
         <% elsif !current_user %>
-          <%= link_to "View our pricing", "#pricing", class: "bg-indigo-500 text-indigo-100 px-2 py-1.5 rounded-full border-2 border-indigo-500 hover:bg-indigo-400 transition duration-250" %>
+          <%= link_to "View our pricing", "#pricing", class: "bg-indigo-500 text-indigo-100 px-2 py-1.5 rounded-full border-2 border-indigo-500 hover:bg-indigo-400 transition duration-250 text-xl" %>
         <% end %>
       </div>
     </div>
 
     <% if @component_packs.any? %>
-      <div class="max-w-7xl w-full mx-auto mt-40 pb-16">
+      <div class="max-w-7xl w-full mx-auto mt-40 pb-16 px-8">
         <p class="text-2xl text-gray-200"> Examples </p>
         <div class="grid md:grid-cols-3 gap-4 mt-4">
           <% @component_packs.each do |component_pack| %>
             <%= link_to free_component_pack_path(component_pack) do %>
               <div class="flex flex-col group">
-                <p class="text-2xl text-gray-200 mt-2 group-hover:text-gray-300 transition-all duration-250 mb-4"> <%= component_pack.name %> </p>
+                <p class="text-2xl text-gray-200 mt-2 group-hover:text-gray-300 transition-all duration-250 mb-4"> <%= component_pack.name %> Components </p>
                 <div class="bg-gray-200 rounded-lg w-full h-64 overflow-hidden group-hover:brightness-75 transition-all duration-250"> 
                   <% if component_pack.image.attached? %>
                       <%= image_tag component_pack.image, class: "h-full w-full object-center" %>
@@ -49,26 +49,27 @@
       </div>
     <% end %>
     <% if !current_user || !current_user&.paid_account? %>
-      <div class="max-w-7xl w-full mx-auto pb-36">
+      <div class="max-w-7xl w-full mx-auto pb-36 px-9">
         <h3 class="text-2xl text-gray-100"> We offer transparent pricing at a great value <h3>
-        <div class="grid md:grid-cols-2 gap-8 mt-8 ">
-          <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center">
-            <p class="text-3xl text-center text-pink-50"> Monthly </p>
+        <div class="grid md:grid-cols-3 gap-6 mt-8">
+          <div class="rounded-xl bg-indigo-400 shadow-lg h-[50vh] px-3 flex flex-col justify-center relative">
+            <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
+            <p class="text-3xl text-center text-pink-50"> Free </p>
 
-            <p class="text-xl mt-4 text-center text-pink-50"> Get access to unlimited usage and components for 
-              <span class="text-xl text-pink-300"> $4.99 </span> a month
+            <p class="text-xl mt-4 text-center text-pink-50"> Get up to 5 trys and 5 additions per component with a 
+              <span class="text-xl text-pink-300"> free </span> account
             </p>
 
             <div class="flex justify-center mt-4">
-              <% if current_user&.active_subscription %>
+              <% if !current_user %>
+                <%= link_to "Sign up Now", new_user_session_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-purple-500" %>
+              <% elsif !current_user.paid_account? %>
                 <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
-              <% else %>
-                <%= link_to "Subscribe Now", new_subscription_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
               <% end %>
             </div>
           </div>
 
-          <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center relative" id="pricing">
+          <div class="rounded-xl bg-indigo-400 shadow-lg h-[50vh] px-3 flex flex-col justify-center relative shadow-lg shadow-yellow-300" id="pricing">
             <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
             <p class="text-3xl text-center text-pink-50"> Pay Once </p>
 
@@ -80,27 +81,27 @@
               <% if current_user&.purchased_lifetime_membership? %>
                 <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
               <% else %>
-                <%= link_to "Purchase Now", new_purchase_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+                <%= link_to "Purchase Now", new_purchase_path, class: "px-3 py-2 rounded-lg text-yellow-900 bg-gradient-to-r from-yellow-500 to-yellow-300 hover:bg-gradient-to-l shadow-lg" %>
               <% end %>
             </div>
           </div>
 
-          <div class="md:w-3/4 rounded-xl bg-indigo-700/75 h-[50vh] px-3 flex flex-col justify-center relative">
-            <span class="absolute top-4 right-4 bg-yellow-300/50 border-2 border-yellow-500 text-yellow-900 p-2 rounded-lg text-xs animate-pulse"> Limited time offer </span>
-            <p class="text-3xl text-center text-pink-50"> Free </p>
+          <div class="rounded-xl bg-indigo-400 shadow-lg h-[50vh] px-3 flex flex-col justify-center shadow-lg">
+            <p class="text-3xl text-center text-pink-50"> Monthly </p>
 
-            <p class="text-xl mt-4 text-center text-pink-50"> Get up to 5 trys and 5 additions per component with a 
-              <span class="text-xl text-pink-300"> free </span> account
+            <p class="text-xl mt-4 text-center text-pink-50"> Get access to unlimited usage and components for 
+              <span class="text-xl text-pink-300"> $4.99 </span> a month
             </p>
 
             <div class="flex justify-center mt-4">
-              <% if !current_user %>
-                <%= link_to "Sign up Now", new_user_session_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
-              <% elsif !current_user.paid_account? %>
+              <% if current_user&.active_subscription %>
                 <%= link_to "You have this", "#", class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-500" %>
+              <% else %>
+                <%= link_to "Subscribe Now", new_subscription_path, class: "px-3 py-2 rounded-lg text-indigo-100 bg-indigo-700" %>
               <% end %>
             </div>
           </div>
+
         </div>
       </div>
     <% end %>
